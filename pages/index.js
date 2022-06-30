@@ -18,11 +18,12 @@ import Footer from "../components/home/Footer";
 import Header from "../components/home/Header";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
-      <Header style={styles} Image={Image} />
+      <Header style={styles} Image={Image} Link={Link} />
       <main>
         <section className={styles.partners}>
           <Image src={partner1} alt="logo1" className={styles.imgLogo} />
@@ -33,8 +34,7 @@ export default function Home() {
         <section className={styles.about}>
           <section className={styles.aboutHead}>
             <h2 className={styles.aboutHeadText}>
-              <span className={styles.aboutColorText}>About</span> the
-              Application.
+              <span className={"BlueColorText"}>About</span> the Application.
             </h2>
             <p className={styles.aboutHeadPara}>
               We have some great features from the application and it’s totally
@@ -97,12 +97,12 @@ export default function Home() {
             <div className="col-lg-6 ">
               <section className={styles.infoFeaturesText}>
                 <h2>
-                  All The <span className={styles.aboutColorText}>Great</span>{" "}
-                  FazzPay Features.
+                  All The <span className={"BlueColorText"}>Great</span> FazzPay
+                  Features.
                 </h2>
                 <section className={styles.listFeaturesBox}>
                   <h5>
-                    <span className={styles.aboutColorText}>1.</span> Small Fee
+                    <span className={"BlueColorText"}>1.</span> Small Fee
                   </h5>
                   <p>
                     We only charge 5% of every success transaction done in
@@ -111,8 +111,7 @@ export default function Home() {
                 </section>
                 <section className={styles.listFeaturesBox}>
                   <h5>
-                    <span className={styles.aboutColorText}>2.</span> Data
-                    Secured
+                    <span className={"BlueColorText"}>2.</span> Data Secured
                   </h5>
                   <p>
                     All your data is secured properly in our system and it’s
@@ -121,8 +120,7 @@ export default function Home() {
                 </section>
                 <section className={styles.listFeaturesBox}>
                   <h5>
-                    <span className={styles.aboutColorText}>3.</span> User
-                    Friendly
+                    <span className={"BlueColorText"}>3.</span> User Friendly
                   </h5>
                   <p>
                     FazzPay come up with modern and sleek design and not
@@ -135,8 +133,7 @@ export default function Home() {
         </section>
         <section className={styles.testimoni}>
           <h2>
-            What Users are{" "}
-            <span className={styles.aboutColorText}>Saying.</span>
+            What Users are <span className={"BlueColorText"}>Saying.</span>
           </h2>
           <p className={styles.testimoniTextUp}>
             We have some great features from the application and it’s totally

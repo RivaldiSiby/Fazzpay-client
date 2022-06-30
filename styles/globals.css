@@ -18,3 +18,32 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.oncursor {
+  cursor: pointer;
+}
+.BlueColorText {
+  color: #6379f4;
+}
+/* loading page */
+.styleLoading {
+  width: 100%;
+  background: #6a7ff5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.boxImgLoad {
+  height: 100%;
+  padding: 25vh auto;
+  padding-top: 35vh;
+}
+.titleApp {
+  font-family: "Nunito Sans";
+  font-size: 70px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 15px;
+}
+/* loading page */

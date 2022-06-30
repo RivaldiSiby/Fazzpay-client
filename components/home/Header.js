@@ -1,6 +1,6 @@
 import phoneHeader from "../../public/img/landingPage/phoneHeader.png";
 
-const Header = ({ style, Image }) => {
+const Header = ({ style, Image, Link }) => {
   return (
     <div>
       <main className={style.header}>
@@ -34,7 +34,9 @@ const Header = ({ style, Image }) => {
               <h5 className={style.titleHead}>FazzPay</h5>
               <section>
                 <button className={style.btnLogin}>Login</button>
-                <button className={style.btnSignUp}>Sign Up</button>
+                <Link href="/register">
+                  <a className={style.btnSignUp}>Sign Up</a>
+                </Link>
               </section>
             </section>
             <section className="col-lg-6">

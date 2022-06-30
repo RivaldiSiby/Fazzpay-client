@@ -1,8 +1,4 @@
 /* header */
-/* @font-face {
-  font-family: "Nunito Sans";
-  src: url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
-} */
 .header {
   min-height: 900px;
   background: #6379f4;
@@ -65,6 +61,7 @@
   margin-right: 30px;
   width: 120px;
   height: 59px;
+  padding: 17px 50px;
   background: #ffffff;
   box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
   border-radius: 12px;
@@ -156,9 +153,7 @@
   color: #3a3d42;
   text-align: center;
 }
-.aboutColorText {
-  color: #6379f4;
-}
+
 .aboutHeadPara {
   padding-top: 30px;
   font-family: "Nunito Sans";
