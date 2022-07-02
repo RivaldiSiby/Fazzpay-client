@@ -1,8 +1,7 @@
 // img
-import usericon from "../../public/img/authPage/vector/user.png";
+
 import mailicon from "../../public/img/authPage/vector/mail.png";
 import lockicon from "../../public/img/authPage/vector/lock.png";
-import usericonActive from "../../public/img/authPage/vector/useractive.png";
 import mailiconActive from "../../public/img/authPage/vector/mailactive.png";
 import lockiconActive from "../../public/img/authPage/vector/lockactive.png";
 import unshowicon from "../../public/img/authPage/vector/unshow.png";
@@ -14,39 +13,55 @@ import Image from "next/image";
 import Leftauth from "../../components/auth/Leftauth";
 import Link from "next/link";
 import LoadingPage from "../Loading";
-import Signup from "../../modules/auth/Signup";
+import LoginUser from "../../modules/auth/Login";
 import { notifSuccess } from "../../helper/notif";
+import Getuser from "../../modules/user/Getuser";
+import { useSelector, useDispatch } from "react-redux";
+import { successLogin } from "../../redux/actionCreator/auth";
+import { useRouter } from "next/router";
 
-const Register = () => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+const Login = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const registerHandler = async () => {
+  const loginHandler = async () => {
     try {
       setLoading(true);
-      if (
-        firstname.length === 0 ||
-        lastname.length === 0 ||
-        mail.length === 0
-      ) {
+      if (mail.length === 0 || password.length === 0) {
         setError("All fields must be required");
         setLoading(false);
         return;
       }
       const data = {
-        firstName: firstname,
-        lastName: lastname,
         email: mail,
         password: password,
       };
-      await Signup(data);
-      // axios.post("https://fazzpay.herokuapp.com/auth/register", );
-      notifSuccess("Success Sign Up");
+      const result = await LoginUser(data);
+      console.log(result.status);
+      if (result.status === 200) {
+        const user = await Getuser(result.data.data.id, result.data.data.token);
+        console.log(user.data);
+        if (user.status === 200) {
+          dispatch(
+            successLogin(
+              user.data.data,
+              result.data.data.pin === null ? false : true,
+              result.data.data.token
+            )
+          );
+          notifSuccess("Success Login");
+          setLoading(false);
+          result.data.data.pin === null
+            ? router.push("/pin")
+            : router.push("/home");
+        }
+      }
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -78,56 +93,6 @@ const Register = () => {
                     cover all of that for you!
                   </p>
                   <section>
-                    <div className={`input-group mb-3 ${styles.configForm}`}>
-                      <span
-                        className={`${styles.inputStyle} ${
-                          firstname.length > 0 ? styles.inputStyleActive : ""
-                        } input-group-text`}
-                        id="basic-addon1"
-                      >
-                        <Image
-                          className={styles.iconForm}
-                          src={firstname.length > 0 ? usericonActive : usericon}
-                          alt="user-icon"
-                        />
-                      </span>
-                      <input
-                        type="text"
-                        className={`${styles.inputStyle} ${
-                          firstname.length > 0 ? styles.inputStyleActive : ""
-                        } form-control`}
-                        placeholder="Enter your firstname"
-                        aria-label="Enter your firstname"
-                        value={firstname}
-                        aria-describedby="basic-addon1"
-                        onChange={(e) => setFirstname(e.target.value)}
-                      />
-                    </div>
-                    <div className={`input-group mb-3 ${styles.configForm}`}>
-                      <span
-                        className={`${styles.inputStyle} ${
-                          lastname.length > 0 ? styles.inputStyleActive : ""
-                        } input-group-text`}
-                        id="basic-addon2"
-                      >
-                        <Image
-                          className={styles.iconForm}
-                          src={lastname.length > 0 ? usericonActive : usericon}
-                          alt="user-icon"
-                        />
-                      </span>
-                      <input
-                        type="text"
-                        className={`${styles.inputStyle} ${
-                          lastname.length > 0 ? styles.inputStyleActive : ""
-                        } form-control`}
-                        placeholder="Enter your lasttname"
-                        aria-label="Enter your lasttname"
-                        aria-describedby="basic-addon2"
-                        value={lastname}
-                        onChange={(e) => setLastname(e.target.value)}
-                      />
-                    </div>
                     <div className={`input-group mb-3 ${styles.configForm}`}>
                       <span
                         className={`${styles.inputStyle} ${
@@ -170,8 +135,8 @@ const Register = () => {
                         className={`${styles.inputStyle} ${
                           password.length > 0 ? styles.inputStyleActive : ""
                         } form-control`}
-                        placeholder="Create your password"
-                        aria-label="Create your password"
+                        placeholder="Enter your password"
+                        aria-label="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
@@ -202,16 +167,25 @@ const Register = () => {
                     ) : (
                       ""
                     )}
-                    <button
-                      onClick={registerHandler}
-                      className={`${styles.btnForm} w-100`}
-                    >
-                      Sign Ups
-                    </button>
+                    {mail.length > 0 && password.length > 0 ? (
+                      <button
+                        onClick={loginHandler}
+                        className={`${styles.btnForm} w-100 ${styles.btnActive}`}
+                      >
+                        Login
+                      </button>
+                    ) : (
+                      <button
+                        className={`${styles.btnForm} w-100 ${styles.btnDisable}`}
+                      >
+                        Login
+                      </button>
+                    )}
+
                     <p>
-                      Already have an account? Let’s{" "}
-                      <Link href="/login">
-                        <a className="BlueColorText">Login</a>
+                      Don’t have an account? Let’s{" "}
+                      <Link href="/register">
+                        <a className="BlueColorText">Sign Up</a>
                       </Link>
                     </p>
                   </section>
@@ -229,4 +203,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

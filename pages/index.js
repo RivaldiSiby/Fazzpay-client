@@ -20,7 +20,7 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function index() {
   return (
     <div>
       <Header style={styles} Image={Image} Link={Link} />
