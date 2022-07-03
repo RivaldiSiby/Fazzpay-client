@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
 
-const Login = () => {
+const Forgotpass = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -84,15 +84,16 @@ const Login = () => {
               <section className="col-lg-6">
                 <section className={styles.authRight}>
                   <h5 className={styles.authTitle}>
-                    Start Accessing Banking Needs
-                    <br /> With All Devices and All Platforms
+                    Did You Forgot Your Password?
                     <br />
-                    With 30.000+ Users
+                    Don’t Worry, You Can Reset Your
+                    <br />
+                    Password In a Minutes.
                   </h5>
                   <p className={styles.authText}>
-                    Transfering money is eassier than ever, you can access
-                    FazzPay wherever you are. Desktop, laptop, mobile phone? we
-                    cover all of that for you!
+                    To reset your password, you must type your e-mail and we
+                    will send a link to your email and you will be directed to
+                    the reset password screens.
                   </p>
                   <section>
                     <div className={`input-group mb-3 ${styles.configForm}`}>
@@ -136,65 +137,6 @@ const Login = () => {
                         onChange={(e) => setMail(e.target.value)}
                       />
                     </div>
-                    <div className={`input-group mb-3 ${styles.configForm}`}>
-                      <span
-                        className={`${styles.inputStyle} ${
-                          password.length > 0 ? styles.inputStyleActive : ""
-                        } ${
-                          error !== false ? styles.inputStyleError : ""
-                        } input-group-text`}
-                      >
-                        {error !== false ? (
-                          <>
-                            <Image
-                              className={styles.iconForm}
-                              src={lockerr}
-                              alt="password-icon"
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <Image
-                              className={styles.iconForm}
-                              src={
-                                password.length > 0 ? lockiconActive : lockicon
-                              }
-                              alt="password-icon"
-                            />
-                          </>
-                        )}
-                      </span>
-                      <input
-                        type={showPass === false ? "password" : "text"}
-                        className={`${styles.inputStyle} ${
-                          password.length > 0 ? styles.inputStyleActive : ""
-                        } ${
-                          error !== false ? styles.inputStyleError : ""
-                        } form-control`}
-                        placeholder="Enter your password"
-                        aria-label="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      <span
-                        className={`${styles.inputStyle} ${
-                          password.length > 0 ? styles.inputStyleActive : ""
-                        } ${
-                          error !== false ? styles.inputStyleError : ""
-                        } input-group-text`}
-                      >
-                        <Image
-                          className={`${styles.iconForm} oncursor`}
-                          src={showPass === false ? unshowicon : showicon}
-                          alt="unshow-icon"
-                          onClick={() =>
-                            showPass === false
-                              ? setShowPass(true)
-                              : setShowPass(false)
-                          }
-                        />
-                      </span>
-                    </div>
 
                     {error !== false ? (
                       <>
@@ -205,27 +147,20 @@ const Login = () => {
                     ) : (
                       ""
                     )}
-                    {mail.length > 0 && password.length > 0 ? (
+                    {mail.length > 0 ? (
                       <button
                         onClick={loginHandler}
                         className={`${styles.btnForm} w-100 ${styles.btnActive}`}
                       >
-                        Login
+                        Confirm
                       </button>
                     ) : (
                       <button
                         className={`${styles.btnForm} w-100 ${styles.btnDisable}`}
                       >
-                        Login
+                        Confirm
                       </button>
                     )}
-
-                    <p>
-                      Don’t have an account? Let’s{" "}
-                      <Link href="/register">
-                        <a className="BlueColorText">Sign Up</a>
-                      </Link>
-                    </p>
                   </section>
                 </section>
               </section>
@@ -241,4 +176,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Forgotpass;

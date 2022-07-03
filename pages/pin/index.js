@@ -1,3 +1,7 @@
+// img
+import iconSuccess from "../../public/img/authPage/vector/success.png";
+// img
+
 import { useEffect, useState } from "react";
 import styles from "../../styles/auth.module.css";
 import Image from "next/image";
@@ -20,7 +24,7 @@ const Pin = () => {
   const [input6, setInput6] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [pincreated, setPincreated] = useState(false);
+  const [pincreated, setPincreated] = useState(true);
 
   const pinHandler = async () => {
     try {
@@ -83,7 +87,11 @@ const Pin = () => {
                     </p>
                     <section>
                       <section className="d-flex justify-content-between">
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input1.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input1}
@@ -91,7 +99,11 @@ const Pin = () => {
                             onChange={(e) => setInput1(e.target.value)}
                           />
                         </section>
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input2.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input2}
@@ -99,7 +111,11 @@ const Pin = () => {
                             onChange={(e) => setInput2(e.target.value)}
                           />
                         </section>
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input3.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input3}
@@ -107,7 +123,11 @@ const Pin = () => {
                             onChange={(e) => setInput3(e.target.value)}
                           />
                         </section>
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input4.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input4}
@@ -115,7 +135,11 @@ const Pin = () => {
                             onChange={(e) => setInput4(e.target.value)}
                           />
                         </section>
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input5.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input5}
@@ -123,7 +147,11 @@ const Pin = () => {
                             onChange={(e) => setInput5(e.target.value)}
                           />
                         </section>
-                        <section className={styles.boxPin}>
+                        <section
+                          className={`${styles.boxPin} ${
+                            input6.length > 0 ? styles.boxPinActive : ""
+                          }`}
+                        >
                           <input
                             type="text"
                             value={input6}
@@ -171,6 +199,7 @@ const Pin = () => {
                 </section>
                 <section className="col-lg-6">
                   <section className={styles.authRight}>
+                    <Image src={iconSuccess} alt="icon-success" />
                     <h5 className={styles.authTitle}>
                       Your PIN Was Successfully Created
                     </h5>
