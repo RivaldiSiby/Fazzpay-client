@@ -21,48 +21,22 @@ import Getuser from "../../modules/user/Getuser";
 import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
+import ForgotPass from "../../modules/auth/Forgotpass";
 
 const Forgotpass = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
   const [mail, setMail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const loginHandler = async () => {
+  const forgotHandler = async () => {
     try {
       setLoading(true);
-      if (mail.length === 0 || password.length === 0) {
-        setError("All fields must be required");
-        setLoading(false);
-        return;
-      }
-      const data = {
-        email: mail,
-        password: password,
-      };
-      const result = await LoginUser(data);
-      console.log(result.status);
+      const result = await ForgotPass(mail);
       if (result.status === 200) {
-        const user = await Getuser(result.data.data.id, result.data.data.token);
-        console.log(user.data);
-        if (user.status === 200) {
-          dispatch(
-            successLogin(
-              user.data.data,
-              result.data.data.pin === null ? false : true,
-              result.data.data.token
-            )
-          );
-          notifSuccess("Success Login");
-          setLoading(false);
-          result.data.data.pin === null
-            ? router.push("/pin")
-            : router.push("/home");
-        }
+        notifSuccess("Success LoginProcess success, please check your email !");
+        setLoading(false);
       }
       setLoading(false);
     } catch (error) {
@@ -149,7 +123,7 @@ const Forgotpass = () => {
                     )}
                     {mail.length > 0 ? (
                       <button
-                        onClick={loginHandler}
+                        onClick={forgotHandler}
                         className={`${styles.btnForm} w-100 ${styles.btnActive}`}
                       >
                         Confirm

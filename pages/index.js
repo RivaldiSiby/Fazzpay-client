@@ -14,7 +14,7 @@ import arrowRight from "../public/img/landingPage/arrow2.png";
 // img
 
 import react from "react";
-import Footer from "../components/home/Footer";
+import Foot from "../components/home/Foot";
 import Header from "../components/home/Header";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
@@ -178,7 +178,7 @@ export default function index() {
           </section>
         </section>
       </main>
-      <Footer style={styles} Image={Image} />
+      <Foot style={styles} Image={Image} />
     </div>
   );
 }

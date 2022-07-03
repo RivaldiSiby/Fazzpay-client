@@ -76,6 +76,17 @@
   color: #6379f4;
   border: none;
 }
+.forgotPass {
+  padding-bottom: 20px;
+}
+.textForgot {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(58, 61, 66, 0.8);
+}
 .btnActive {
   background: #6379f4;
   box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);

@@ -1,10 +1,7 @@
 // img
 
-import mailicon from "../../public/img/authPage/vector/mail.png";
 import lockicon from "../../public/img/authPage/vector/lock.png";
-import mailerr from "../../public/img/authPage/vector/mailerr.png";
 import lockerr from "../../public/img/authPage/vector/lockerr.png";
-import mailiconActive from "../../public/img/authPage/vector/mailactive.png";
 import lockiconActive from "../../public/img/authPage/vector/lockactive.png";
 import unshowicon from "../../public/img/authPage/vector/unshow.png";
 import showicon from "../../public/img/authPage/vector/show.jpg";
@@ -17,52 +14,41 @@ import Link from "next/link";
 import LoadingPage from "../Loading";
 import LoginUser from "../../modules/auth/Login";
 import { notifSuccess } from "../../helper/notif";
-import Getuser from "../../modules/user/Getuser";
+import ResetPass from "../../modules/auth/Resetpass";
 import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
 
-const Login = () => {
+const Resetpass = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
+  const [cpassword, setCpassword] = useState("");
+  const [showPass1, setShowPass1] = useState(false);
+  const [showPass2, setShowPass2] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const loginHandler = async () => {
+  const resetHandler = async () => {
     try {
       setLoading(true);
-      if (mail.length === 0 || password.length === 0) {
-        setError("All fields must be required");
+      if (password !== cpassword) {
+        setError("new password and confirm password must match");
         setLoading(false);
         return;
       }
       const data = {
-        email: mail,
-        password: password,
+        keysChangePassword: router.query.code,
+        newPassword: password,
+        confirmPassword: cpassword,
       };
-      const result = await LoginUser(data);
+      const result = await ResetPass(data);
       console.log(result.status);
       if (result.status === 200) {
-        const user = await Getuser(result.data.data.id, result.data.data.token);
-        console.log(user.data);
-        if (user.status === 200) {
-          dispatch(
-            successLogin(
-              user.data.data,
-              result.data.data.pin === null ? false : true,
-              result.data.data.token
-            )
-          );
-          notifSuccess("Success Login");
-          setLoading(false);
-          result.data.data.pin === null
-            ? router.push("/pin")
-            : router.push("/home");
-        }
+        notifSuccess("Password has been changed successfully");
+        setLoading(false);
+        router.push("/login");
       }
       setLoading(false);
     } catch (error) {
@@ -84,58 +70,18 @@ const Login = () => {
               <section className="col-lg-6">
                 <section className={styles.authRight}>
                   <h5 className={styles.authTitle}>
-                    Start Accessing Banking Needs
-                    <br /> With All Devices and All Platforms
+                    Did You Forgot Your Password?
                     <br />
-                    With 30.000+ Users
+                    Don’t Worry, You Can Reset Your
+                    <br />
+                    Password In a Minutes.
                   </h5>
                   <p className={styles.authText}>
-                    Transfering money is eassier than ever, you can access
-                    FazzPay wherever you are. Desktop, laptop, mobile phone? we
-                    cover all of that for you!
+                    Now you can create a new password for your Zwallet account.
+                    Type your password twice so we can confirm your new
+                    passsword.
                   </p>
                   <section>
-                    <div className={`input-group mb-3 ${styles.configForm}`}>
-                      <span
-                        className={`${styles.inputStyle} ${
-                          mail.length > 0 ? styles.inputStyleActive : ""
-                        } ${
-                          error !== false ? styles.inputStyleError : ""
-                        } input-group-text`}
-                        id="basic-addon3"
-                      >
-                        {error !== false ? (
-                          <>
-                            <Image
-                              className={styles.iconForm}
-                              src={mailerr}
-                              alt="mail-icon"
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <Image
-                              className={styles.iconForm}
-                              src={mail.length > 0 ? mailiconActive : mailicon}
-                              alt="mail-icon"
-                            />
-                          </>
-                        )}
-                      </span>
-                      <input
-                        type="email"
-                        className={`${styles.inputStyle} ${
-                          mail.length > 0 ? styles.inputStyleActive : ""
-                        } ${
-                          error !== false ? styles.inputStyleError : ""
-                        } form-control`}
-                        placeholder="Enter your e-mail"
-                        aria-label="Enter your e-mail"
-                        aria-describedby="basic-addon3"
-                        value={mail}
-                        onChange={(e) => setMail(e.target.value)}
-                      />
-                    </div>
                     <div className={`input-group mb-3 ${styles.forgotPass}`}>
                       <span
                         className={`${styles.inputStyle} ${
@@ -165,14 +111,14 @@ const Login = () => {
                         )}
                       </span>
                       <input
-                        type={showPass === false ? "password" : "text"}
+                        type={showPass1 === false ? "password" : "text"}
                         className={`${styles.inputStyle} ${
                           password.length > 0 ? styles.inputStyleActive : ""
                         } ${
                           error !== false ? styles.inputStyleError : ""
                         } form-control`}
-                        placeholder="Enter your password"
-                        aria-label="Enter your password"
+                        placeholder="Create new password"
+                        aria-label="Create new password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
@@ -185,21 +131,76 @@ const Login = () => {
                       >
                         <Image
                           className={`${styles.iconForm} oncursor`}
-                          src={showPass === false ? unshowicon : showicon}
+                          src={showPass1 === false ? unshowicon : showicon}
                           alt="unshow-icon"
                           onClick={() =>
-                            showPass === false
-                              ? setShowPass(true)
-                              : setShowPass(false)
+                            showPass1 === false
+                              ? setShowPass1(true)
+                              : setShowPass1(false)
                           }
                         />
                       </span>
                     </div>
-                    <section className="text-end pb-5 mb-5">
-                      <Link href="/forgotpass">
-                        <a className={styles.textForgot}>Forgot password?</a>
-                      </Link>
-                    </section>
+
+                    <div className={`input-group mb-3 ${styles.configForm}`}>
+                      <span
+                        className={`${styles.inputStyle} ${
+                          cpassword.length > 0 ? styles.inputStyleActive : ""
+                        } ${
+                          error !== false ? styles.inputStyleError : ""
+                        } input-group-text`}
+                      >
+                        {error !== false ? (
+                          <>
+                            <Image
+                              className={styles.iconForm}
+                              src={lockerr}
+                              alt="cpassword-icon"
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <Image
+                              className={styles.iconForm}
+                              src={
+                                cpassword.length > 0 ? lockiconActive : lockicon
+                              }
+                              alt="cpassword-icon"
+                            />
+                          </>
+                        )}
+                      </span>
+                      <input
+                        type={showPass2 === false ? "password" : "text"}
+                        className={`${styles.inputStyle} ${
+                          cpassword.length > 0 ? styles.inputStyleActive : ""
+                        } ${
+                          error !== false ? styles.inputStyleError : ""
+                        } form-control`}
+                        placeholder="Confirm new password"
+                        aria-label="Confirm new password"
+                        value={cpassword}
+                        onChange={(e) => setCpassword(e.target.value)}
+                      />
+                      <span
+                        className={`${styles.inputStyle} ${
+                          password.length > 0 ? styles.inputStyleActive : ""
+                        } ${
+                          error !== false ? styles.inputStyleError : ""
+                        } input-group-text`}
+                      >
+                        <Image
+                          className={`${styles.iconForm} oncursor`}
+                          src={showPass2 === false ? unshowicon : showicon}
+                          alt="unshow-icon"
+                          onClick={() =>
+                            showPass2 === false
+                              ? setShowPass2(true)
+                              : setShowPass2(false)
+                          }
+                        />
+                      </span>
+                    </div>
 
                     {error !== false ? (
                       <>
@@ -210,27 +211,20 @@ const Login = () => {
                     ) : (
                       ""
                     )}
-                    {mail.length > 0 && password.length > 0 ? (
+                    {cpassword.length > 0 && password.length > 0 ? (
                       <button
-                        onClick={loginHandler}
+                        onClick={resetHandler}
                         className={`${styles.btnForm} w-100 ${styles.btnActive}`}
                       >
-                        Login
+                        Reset Password
                       </button>
                     ) : (
                       <button
                         className={`${styles.btnForm} w-100 ${styles.btnDisable}`}
                       >
-                        Login
+                        Reset Password
                       </button>
                     )}
-
-                    <p>
-                      Don’t have an account? Let’s{" "}
-                      <Link href="/register">
-                        <a className="BlueColorText">Sign Up</a>
-                      </Link>
-                    </p>
                   </section>
                 </section>
               </section>
@@ -246,4 +240,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Resetpass;

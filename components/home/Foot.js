@@ -1,4 +1,4 @@
-const Footer = ({ style }) => {
+const Foot = ({ style }) => {
   return (
     <div className={style.Footer}>
       <section className={style.FooterUp}>
@@ -20,4 +20,4 @@ const Footer = ({ style }) => {
   );
 };
 
-export default Footer;
+export default Foot;
