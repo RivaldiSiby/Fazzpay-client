@@ -5,13 +5,17 @@
 .userHome > section {
   column-gap: 2%;
 }
+/* menubar */
 .menuBar {
   height: 678px;
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
   flex: 3;
+  padding-left: 35px;
 }
+
+/* menubar */
 .mainBox {
   height: 678px;
   flex: 7;
@@ -72,13 +76,84 @@
   margin-bottom: 16px;
   width: 162px;
 }
-.cartBox {
+/* chart */
+.chartBox {
   height: 468px;
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
   width: 51%;
 }
+.headChart {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-bottom: 41px;
+}
+.headInfo {
+  padding-top: 30px;
+}
+.imgBoxChart {
+  width: 28px;
+  height: 28px;
+}
+
+.textInfoHead {
+  padding-top: 15px;
+}
+.textInfoHead > p {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #6a6a6a;
+}
+.textInfoHead > h5 {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #3a3d42;
+}
+.mainChart {
+  height: 287px;
+}
+.chartView {
+  height: 223px;
+  display: flex;
+}
+.bulletChart {
+  width: 14.28%;
+}
+.bulletViewBlue {
+  width: 14px;
+  background: #6379f4;
+  border-radius: 15px;
+  height: 1%;
+}
+.bulletViewSilver {
+  width: 14px;
+  background: #9da6b5;
+  border-radius: 15px;
+  height: 1%;
+}
+.textView {
+  display: flex;
+}
+.daysView {
+  width: 14.28%;
+  text-align: center;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #8f8f8f;
+  padding-top: 15px;
+}
+/* chart */
 .historyBox {
   height: 468px;
   background: #ffffff;
@@ -86,6 +161,14 @@
   border-radius: 25px;
   width: 46.5%;
   padding: 0 30px;
+}
+.imgBoxHistory {
+  width: 56px;
+  height: 56px;
+}
+.historyInfo {
+  display: flex;
+  justify-content: space-between;
 }
 .historyInfo > h4 {
   margin-top: 30px;
@@ -97,8 +180,53 @@
   line-height: 25px;
   color: #3a3d42;
 }
+.historyInfo > p {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #6379f4;
+  margin-top: 33px;
+  cursor: pointer;
+}
 .listHistory {
-  border: 1px solid black;
   height: 56px;
   margin-bottom: 40px;
+}
+.historyUserInfo {
+  padding-left: 15px;
+}
+.historyUserInfo > h5 {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #4d4b57;
+}
+.historyUserInfo > p {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #7a7886;
+}
+.historyInfoPrice {
+  align-items: center;
+  justify-content: flex-end;
+}
+.historyInfoPrice > h5 {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+}
+.plusPrice {
+  color: #1ec15f;
+}
+.minPrice {
+  color: #ff5b37;
 }
