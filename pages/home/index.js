@@ -12,14 +12,14 @@ import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import cekLogin from "../../helper/cekLogin";
 import styles from "../../styles/user.module.css";
-import History from "../../components/dashboard/history";
+import History from "../../components/dashboard/History";
 import Chart from "../../components/dashboard/Chart";
 import Menubar from "../../components/layout/Menubar";
 import Getdata from "../../modules/dashboard/Getdata";
 import LoadingPage from "../Loading";
 import errorLogin from "../../helper/errorLogin";
 import Modaluser from "../../components/layout/Modaluser";
-import Topup from "../../modules/topup/topup";
+import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
 const Home = () => {
   const router = useRouter();
