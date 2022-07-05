@@ -18,7 +18,7 @@ import errorLogin from "../../helper/errorLogin";
 import Modaluser from "../../components/layout/Modaluser";
 import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
-import Getuser from "../../modules/user/GetUser";
+import Getuser from "../../modules/user/Getuser";
 import Swal from "sweetalert2";
 import TransferDana from "../../modules/transfer/Transfer";
 
