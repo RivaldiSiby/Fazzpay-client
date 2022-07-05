@@ -18,6 +18,7 @@ import ResetPass from "../../modules/auth/Resetpass";
 import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Resetpass = () => {
   const router = useRouter();
@@ -60,6 +61,9 @@ const Resetpass = () => {
 
   return (
     <div>
+      <Head>
+        <title>Reset Password</title>
+      </Head>
       {loading === false ? (
         <>
           <main className={styles.authPage}>

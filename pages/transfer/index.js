@@ -19,6 +19,7 @@ import Modaluser from "../../components/layout/Modaluser";
 import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
 import Search from "../../modules/user/Search";
+import Head from "next/head";
 const Transfer = () => {
   const router = useRouter();
   const pin = useSelector((state) => state.pin);
@@ -82,6 +83,9 @@ const Transfer = () => {
   };
   return (
     <div>
+      <Head>
+        <title>Transfer</title>
+      </Head>
       {loading === false ? (
         <>
           {modaluser1 === true ? (

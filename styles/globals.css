@@ -35,10 +35,10 @@ a {
 }
 .boxImgLoad {
   height: 100%;
-  padding: 25vh auto;
-  padding-top: 35vh;
+  padding: 0 auto;
 }
 .titleApp {
+  margin-top: 35vh;
   font-family: "Nunito Sans";
   font-size: 70px;
   color: white;

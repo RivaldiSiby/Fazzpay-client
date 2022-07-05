@@ -22,6 +22,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import cekLogin from "../helper/cekLogin";
 import { useSelector } from "react-redux";
+import Head from "next/head";
 
 export default function Index() {
   const auth = useSelector((state) => state.auth);
@@ -31,6 +32,9 @@ export default function Index() {
   }, []);
   return (
     <div>
+      <Head>
+        <title>Landing Page</title>
+      </Head>
       <Header style={styles} Image={Image} Link={Link} />
       <main>
         <section className={styles.partners}>

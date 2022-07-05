@@ -22,6 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
 import cekLogin from "../../helper/cekLogin";
+import Head from "next/head";
 
 const Login = () => {
   const router = useRouter();
@@ -75,9 +76,11 @@ const Login = () => {
       setLoading(false);
     }
   };
-
   return (
     <div>
+      <Head>
+        <title>Login</title>
+      </Head>
       {loading === false ? (
         <>
           <main className={styles.authPage}>

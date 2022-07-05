@@ -23,6 +23,7 @@ import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
 import Getuser from "../../modules/user/Getuser";
 import { successLogin } from "../../redux/actionCreator/auth";
+import Head from "next/head";
 
 const Home = () => {
   const router = useRouter();
@@ -74,6 +75,9 @@ const Home = () => {
   };
   return (
     <div>
+      <Head>
+        <title>Home</title>
+      </Head>
       {loading === false && data !== false ? (
         <>
           {modaluser1 === true ? (

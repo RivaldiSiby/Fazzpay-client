@@ -22,6 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
 import ForgotPass from "../../modules/auth/Forgotpass";
+import Head from "next/head";
 
 const Forgotpass = () => {
   const router = useRouter();
@@ -48,6 +49,9 @@ const Forgotpass = () => {
 
   return (
     <div>
+      <Head>
+        <title>Forgot Password</title>
+      </Head>
       {loading === false ? (
         <>
           <main className={styles.authPage}>

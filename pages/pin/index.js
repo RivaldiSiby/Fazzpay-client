@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CreatePin from "../../modules/auth/CreatePin";
 import { successLogin } from "../../redux/actionCreator/auth";
 import cekLogin from "../../helper/cekLogin";
+import Head from "next/head";
 
 const Pin = () => {
   const router = useRouter();
@@ -71,6 +72,9 @@ const Pin = () => {
 
   return (
     <div>
+      <Head>
+        <title>Create Pin</title>
+      </Head>
       {loading === false ? (
         <>
           <main className={styles.authPage}>

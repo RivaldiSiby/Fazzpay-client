@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import Signup from "../../modules/auth/Signup";
 import { notifSuccess } from "../../helper/notif";
 import cekLogin from "../../helper/cekLogin";
+import Head from "next/head";
 
 const Register = () => {
   const router = useRouter();
@@ -52,8 +53,8 @@ const Register = () => {
         password: password,
       };
       await Signup(data);
-      // axios.post("https://fazzpay.herokuapp.com/auth/register", );
       notifSuccess("Success Sign Up");
+      router.push("/login");
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -64,6 +65,9 @@ const Register = () => {
 
   return (
     <div>
+      <Head>
+        <title>Register</title>
+      </Head>
       {loading === false ? (
         <>
           <main className={styles.authPage}>

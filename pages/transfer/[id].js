@@ -21,6 +21,7 @@ import { notifSuccess } from "../../helper/notif";
 import Getuser from "../../modules/user/Getuser";
 import Swal from "sweetalert2";
 import TransferDana from "../../modules/transfer/Transfer";
+import Head from "next/head";
 
 const Transfer = () => {
   const router = useRouter();
@@ -120,9 +121,11 @@ const Transfer = () => {
       setLoading(false);
     }
   };
-  console.log(success);
   return (
     <div>
+      <Head>
+        <title>Transfer</title>
+      </Head>
       {loading === false ? (
         <>
           {modaluser1 === true ? (
