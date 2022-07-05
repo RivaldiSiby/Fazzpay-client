@@ -7,7 +7,7 @@ const History = ({ styles, Image, usertes }) => {
       </section>
       <section>
         <section className={`${styles.listHistory} row`}>
-          <section className={`col-sm-7 d-flex`}>
+          <section className={`col-7 d-flex`}>
             <section className={styles.imgBoxHistory}>
               <Image
                 className="img-navbar-user"
@@ -22,12 +22,12 @@ const History = ({ styles, Image, usertes }) => {
               <p>Accept</p>
             </section>
           </section>
-          <section className={`col-sm-5 d-flex ${styles.historyInfoPrice}`}>
+          <section className={`col-5 d-flex ${styles.historyInfoPrice}`}>
             <h5 className={styles.plusPrice}>+Rp50.000</h5>
           </section>
         </section>
         <section className={`${styles.listHistory} row`}>
-          <section className={`col-sm-7 d-flex`}>
+          <section className={`col-7 d-flex`}>
             <section className={styles.imgBoxHistory}>
               <Image
                 className="img-navbar-user"
@@ -42,12 +42,12 @@ const History = ({ styles, Image, usertes }) => {
               <p>Accept</p>
             </section>
           </section>
-          <section className={`col-sm-5 d-flex ${styles.historyInfoPrice}`}>
+          <section className={`col-5 d-flex ${styles.historyInfoPrice}`}>
             <h5 className={styles.minPrice}>-Rp149.000</h5>
           </section>
         </section>
         <section className={`${styles.listHistory} row`}>
-          <section className={`col-sm-7 d-flex`}>
+          <section className={`col-7 d-flex`}>
             <section className={styles.imgBoxHistory}>
               <Image
                 className="img-navbar-user"
@@ -62,12 +62,12 @@ const History = ({ styles, Image, usertes }) => {
               <p>Accept</p>
             </section>
           </section>
-          <section className={`col-sm-5 d-flex ${styles.historyInfoPrice}`}>
+          <section className={`col-5 d-flex ${styles.historyInfoPrice}`}>
             <h5 className={styles.plusPrice}>+Rp50.000</h5>
           </section>
         </section>
         <section className={`${styles.listHistory} row`}>
-          <section className={`col-sm-7 d-flex`}>
+          <section className={`col-7 d-flex`}>
             <section className={styles.imgBoxHistory}>
               <Image
                 className="img-navbar-user"
@@ -82,7 +82,7 @@ const History = ({ styles, Image, usertes }) => {
               <p>Accept</p>
             </section>
           </section>
-          <section className={`col-sm-5 d-flex ${styles.historyInfoPrice}`}>
+          <section className={`col-5 d-flex ${styles.historyInfoPrice}`}>
             <h5 className={styles.minPrice}>-Rp149.000</h5>
           </section>
         </section>

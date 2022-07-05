@@ -11,6 +11,7 @@ import LoadingPage from "../Loading";
 import { useSelector, useDispatch } from "react-redux";
 import CreatePin from "../../modules/auth/CreatePin";
 import { successLogin } from "../../redux/actionCreator/auth";
+import cekLogin from "../../helper/cekLogin";
 
 const Pin = () => {
   const router = useRouter();
@@ -24,7 +25,14 @@ const Pin = () => {
   const [input6, setInput6] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [pincreated, setPincreated] = useState(true);
+  const [pincreated, setPincreated] = useState(false);
+
+  useEffect(() => {
+    cekLogin(auth.isLogin, dispatch, router);
+    if (auth.havePin === true) {
+      router.push("/home");
+    }
+  }, []);
 
   const pinHandler = async () => {
     try {

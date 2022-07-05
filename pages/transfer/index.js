@@ -201,7 +201,6 @@ const Transfer = () => {
                                   </section>
                                 </section>
                               </section>
-                              ;
                             </>
                           ))}
                         </section>

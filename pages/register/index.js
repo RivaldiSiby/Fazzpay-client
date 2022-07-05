@@ -13,11 +13,16 @@ import styles from "../../styles/auth.module.css";
 import Image from "next/image";
 import Leftauth from "../../components/auth/Leftauth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import LoadingPage from "../Loading";
+import { useSelector } from "react-redux";
 import Signup from "../../modules/auth/Signup";
 import { notifSuccess } from "../../helper/notif";
+import cekLogin from "../../helper/cekLogin";
 
 const Register = () => {
+  const router = useRouter();
+  const auth = useSelector((state) => state.auth);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [mail, setMail] = useState("");
@@ -25,7 +30,9 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  useEffect(() => {
+    cekLogin(auth.isLogin, null, router);
+  }, []);
   const registerHandler = async () => {
     try {
       setLoading(true);

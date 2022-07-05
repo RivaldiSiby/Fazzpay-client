@@ -21,6 +21,9 @@ import errorLogin from "../../helper/errorLogin";
 import Modaluser from "../../components/layout/Modaluser";
 import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
+import Getuser from "../../modules/user/Getuser";
+import { successLogin } from "../../redux/actionCreator/auth";
+
 const Home = () => {
   const router = useRouter();
   const auth = useSelector((state) => state.auth);
@@ -35,9 +38,10 @@ const Home = () => {
     const getData = async () => {
       try {
         const result = await Getdata(auth.user.id, auth.token);
-
-        if (result.status === 200) {
+        const user = await Getuser(auth.user.id, auth.token);
+        if (result.status === 200 && user.status === 200) {
           setData(result.data.data);
+          dispatch(successLogin(user.data.data, true, auth.token));
           setLoading(false);
         }
       } catch (error) {

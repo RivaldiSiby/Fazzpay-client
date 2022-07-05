@@ -21,6 +21,7 @@ import Getuser from "../../modules/user/Getuser";
 import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
 import { useRouter } from "next/router";
+import cekLogin from "../../helper/cekLogin";
 
 const Login = () => {
   const router = useRouter();
@@ -31,6 +32,9 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  useEffect(() => {
+    cekLogin(auth.isLogin, null, router);
+  }, []);
 
   const loginHandler = async () => {
     try {

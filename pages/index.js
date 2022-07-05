@@ -13,14 +13,22 @@ import arrowLeft from "../public/img/landingPage/arrow1.png";
 import arrowRight from "../public/img/landingPage/arrow2.png";
 // img
 
-import react from "react";
+import { useRouter } from "next/router";
 import Foot from "../components/home/Foot";
 import Header from "../components/home/Header";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import cekLogin from "../helper/cekLogin";
+import { useSelector } from "react-redux";
 
 export default function index() {
+  const auth = useSelector((state) => state.auth);
+  const router = useRouter();
+  useEffect(() => {
+    cekLogin(auth.isLogin, null, router);
+  }, []);
   return (
     <div>
       <Header style={styles} Image={Image} Link={Link} />
