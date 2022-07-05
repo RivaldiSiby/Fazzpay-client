@@ -11,7 +11,7 @@ const Foot = ({ style }) => {
       </section>
       <section className={style.FooterDown}>
         <p>2020 FazzPay. All right reserved.</p>
-        <section className="d-flex justify-content-between">
+        <section className="d-flex ">
           <p>+62 5637 8882 9901</p>
           <p>contact@fazzpay.com</p>
         </section>

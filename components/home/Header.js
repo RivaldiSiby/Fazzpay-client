@@ -32,7 +32,7 @@ const Header = ({ style, Image, Link }) => {
           <section className="row">
             <section className="col-12 d-flex justify-content-between">
               <h5 className={style.titleHead}>FazzPay</h5>
-              <section>
+              <section className={style.boxHead}>
                 <Link href="/login">
                   <a className={style.btnLogin}>Login</a>
                 </Link>

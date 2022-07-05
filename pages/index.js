@@ -153,7 +153,7 @@ export default function Index() {
             to use by all users around the world.
           </p>
           <section className="row d-flex align-items-center">
-            <section className="col-2">
+            <section className={`${styles.arrowBox1} col-2`}>
               {" "}
               <Image
                 src={arrowLeft}
@@ -161,7 +161,7 @@ export default function Index() {
                 className={styles.arrowImg}
               />
             </section>
-            <section className="col-8">
+            <section className="col-lg-8">
               <section className={styles.boxTestimoni}>
                 <Image
                   src={userTes}
@@ -179,13 +179,26 @@ export default function Index() {
                 </p>
               </section>
             </section>
-            <section className="col-2 d-flex justify-content-end">
+            <section className={`${styles.arrowBox2} col-2 text-end`}>
               {" "}
               <Image
                 src={arrowRight}
                 className={styles.arrowImg}
                 alt="userTes"
               />{" "}
+            </section>
+            <section className={`text-center ${styles.arrowRes}`}>
+              <Image
+                src={arrowLeft}
+                alt="userTes"
+                className={`${styles.arrowImg} me-2`}
+              />
+
+              <Image
+                src={arrowRight}
+                className={styles.arrowImg}
+                alt="userTes"
+              />
             </section>
           </section>
         </section>

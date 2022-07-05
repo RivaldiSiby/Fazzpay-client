@@ -389,6 +389,9 @@
   display: flex;
   justify-content: space-between;
 }
+.FooterDown > section {
+  justify-content: space-between;
+}
 .FooterDown > p {
   font-family: "Nunito Sans";
   font-style: normal;
@@ -408,4 +411,112 @@
 .FooterDown > section {
   width: 30%;
 }
+.arrowRes {
+  display: none;
+}
 /* footer */
+
+@media only screen and (max-width: 950px) {
+  .header {
+    min-height: 900px;
+    height: 1552px;
+    background: #6379f4;
+  }
+  .uphead {
+    height: 300px;
+  }
+  .downhead {
+    height: 600px;
+  }
+  .boxHead {
+    width: 100%;
+  }
+  .features {
+    min-height: 1400px;
+    height: 2100px;
+    width: 100%;
+    padding: 0 10%;
+  }
+  .mainHead > section > section {
+    flex-direction: column;
+  }
+  .listBox {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .about {
+    height: 1700px;
+    width: 100%;
+    padding: 0 10%;
+    background: #f8fafd;
+  }
+  .aboutBody {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+  }
+  .testimoni {
+    height: 1281px;
+  }
+  .arrowBox1 {
+    display: none;
+  }
+  .arrowBox2 {
+    display: none;
+  }
+  .arrowRes {
+    margin-top: 20px;
+    display: block;
+  }
+  .FooterDown > section {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .header {
+    height: 1410px;
+  }
+  .textHeading {
+    font-size: 25px;
+  }
+  .downhead {
+    min-height: 1110px;
+  }
+  .imgBox {
+    height: 550px;
+  }
+  .btnSignUp {
+    font-size: 16px;
+    height: 32px;
+    width: 70px;
+    padding: 15px 30px;
+  }
+  .btnLogin {
+    font-size: 16px;
+    height: 32px;
+    width: 70px;
+    padding: 15px 20px;
+  }
+  .features {
+    min-height: 1400px;
+    height: 2300px;
+    width: 100%;
+    padding: 0 10%;
+  }
+  .boxTestimoni {
+    padding: 10px;
+  }
+  .testimoniTextDown {
+    padding-top: 20px;
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .header {
+    height: 1433px;
+  }
+  .downhead {
+    min-height: 1133px;
+  }
+}
