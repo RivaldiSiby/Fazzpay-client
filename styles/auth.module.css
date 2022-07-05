@@ -1,13 +1,13 @@
 /*leftAuth */
 .authleft {
-  min-height: 961px;
-  background: #6379f4;
+  min-height: 950px;
+  background: #6a7ff5;
 }
 .uphead {
-  min-height: 270px;
+  height: 400px;
 }
 .downhead {
-  min-height: 691px;
+  height: 100%;
   background: #6a7ff5;
 }
 .wave1 {
