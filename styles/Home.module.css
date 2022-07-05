@@ -1,23 +1,23 @@
 /* header */
 .header {
-  min-height: 900px;
-  background: #6379f4;
+  min-height: 950px;
+  background: #6a7ff5;
 }
 .uphead {
   height: 400px;
 }
 .downhead {
-  min-height: 500px;
+  height: 100%;
   background: #6a7ff5;
 }
 .wave1 {
   position: absolute;
-  bottom: 215px;
+  bottom: 60%;
   z-index: 5;
 }
 .wave2 {
   position: absolute;
-  bottom: 200px;
+  bottom: 58%;
   z-index: 10;
 }
 .mainHead {
@@ -416,11 +416,11 @@
 }
 /* footer */
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 990px) {
   .header {
     min-height: 900px;
     height: 1552px;
-    background: #6379f4;
+    background: #6a7ff5;
   }
   .uphead {
     height: 300px;
