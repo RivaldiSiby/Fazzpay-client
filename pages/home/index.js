@@ -1,7 +1,7 @@
 // img
 import arrowUp from "../../public/img/homePage/arrow-up.png";
 import plus from "../../public/img/homePage/plus.png";
-import usertes from "../../public/img/homePage/usertes.png";
+
 // img
 
 import Image from "next/image";
@@ -24,6 +24,7 @@ import { notifSuccess } from "../../helper/notif";
 import Getuser from "../../modules/user/Getuser";
 import { successLogin } from "../../redux/actionCreator/auth";
 import Head from "next/head";
+import Gethistory from "../../modules/history/Gethistory";
 
 const Home = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(false);
+  const [datahistory, setDatahistory] = useState(false);
   const [modaluser1, setModaluser1] = useState(false);
   const [modaluser2, setModaluser2] = useState(false);
   useEffect(() => {
@@ -40,8 +42,14 @@ const Home = () => {
       try {
         const result = await Getdata(auth.user.id, auth.token);
         const user = await Getuser(auth.user.id, auth.token);
-        if (result.status === 200 && user.status === 200) {
+        const history = await Gethistory(auth.token, 4);
+        if (
+          result.status === 200 &&
+          user.status === 200 &&
+          history.status === 200
+        ) {
           setData(result.data.data);
+          setDatahistory(history.data.data);
           dispatch(successLogin(user.data.data, true, auth.token));
           setLoading(false);
         }
@@ -155,7 +163,7 @@ const Home = () => {
                   <Chart data={data} styles={styles} Image={Image} />
                 </section>
                 <section className={styles.historyBox}>
-                  <History styles={styles} Image={Image} usertes={usertes} />
+                  <History data={datahistory} styles={styles} Image={Image} />
                 </section>
               </section>
             </section>
