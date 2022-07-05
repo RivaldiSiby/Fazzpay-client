@@ -23,7 +23,7 @@ import { useEffect } from "react";
 import cekLogin from "../helper/cekLogin";
 import { useSelector } from "react-redux";
 
-export default function index() {
+export default function Index() {
   const auth = useSelector((state) => state.auth);
   const router = useRouter();
   useEffect(() => {
