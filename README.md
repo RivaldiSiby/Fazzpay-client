@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+
+  <h1 align="center">FazzPay Frontend</h1>
+
+</p>
+
+## About The Project
+
+Fazzpay adalah webapp tabungan digital untuk transaksi top dan transfer uang digital
+
+### Built With
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Javascrip](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+<br>
+
+[![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![ReactJS](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
+[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+<br>
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
+- [NodeJs](https://nodejs.org/)
+- [PostgreSql](https://www.postgresql.org/)
+- [Postman](https://www.postman.com/)
+
+### Installation
+
+1. Clone the repo
+
+```sh
+$ git clone https://github.com/RivaldiSiby/Fazzpay-client
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install NPM packages
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+$ npm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+3. Add .env.local file at root folder project, and add following
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+NEXT_PUBLIC_BE_HOST=*YOUR BACKEND HOST*
+```
 
-## Learn More
+4. Starting application
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+$ npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Fazzpay Client App is Running in http://localhost:3000/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Preview
 
-## Deploy on Vercel
+<div style="display:flex, flex-direction: column" >
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943180/screen%20shot/screencapture-fazzpayapps-vercel-app-2022-07-28-01_20_57_xl1pqc.png" style="margin:20 10%;width: 80%">
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-register-2022-07-28-01_22_43_jiidds.png" style="margin:20 10%;width: 80%">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-login-2022-07-28-01_21_35_u1wuv8.png" style="margin:20 10%;width: 80%">
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943380/screen%20shot/screencapture-fazzpayapps-vercel-app-home-2022-07-28-01_28_06_jxrctz.png" style="margin:20 10%;width: 80%">
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-transfer-2022-07-28-01_25_30_donzvn.png" style="margin:20 10%;width: 80%">
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-transfer-fc4626c5-7153-4257-9481-7a1b5de63660-2022-07-28-01_26_27_phso0n.png" style="margin:20 10%;width: 80%">
+<img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-transfer-fc4626c5-7153-4257-9481-7a1b5de63660-2022-07-28-01_27_05_hzpjmi.png" style="margin:20 10%;width: 80%">
+
+</div>
