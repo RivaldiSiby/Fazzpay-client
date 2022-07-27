@@ -24,12 +24,6 @@ Fazzpay adalah webapp tabungan digital untuk transaksi top dan transfer uang dig
 
 ## Getting Started
 
-### Prerequisites
-
-- [NodeJs](https://nodejs.org/)
-- [PostgreSql](https://www.postgresql.org/)
-- [Postman](https://www.postman.com/)
-
 ### Installation
 
 1. Clone the repo
@@ -72,3 +66,7 @@ $ npm run dev
 <img src="https://res.cloudinary.com/rivaldev/image/upload/v1658943179/screen%20shot/screencapture-fazzpayapps-vercel-app-transfer-fc4626c5-7153-4257-9481-7a1b5de63660-2022-07-28-01_27_05_hzpjmi.png" style="margin:20 10%;width: 80%">
 
 </div>
+
+### Deployed Project
+
+- [`Frontend-Fazzpay`](https://fazzpayapps.vercel.app/)
