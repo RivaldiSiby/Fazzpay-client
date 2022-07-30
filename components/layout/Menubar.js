@@ -22,6 +22,7 @@ const Menubar = ({
   setModal2,
   token,
   dispatch,
+  setBoxpage,
 }) => {
   const router = useRouter();
   const openHandler1 = () => {
@@ -115,7 +116,10 @@ const Menubar = ({
           </h4>
         </section>
         <section
-          onClick={() => router.push("/profile")}
+          onClick={() => {
+            page === "menu4" ? setBoxpage("main") : "";
+            router.push("/profile");
+          }}
           className={`listMenu oncursor`}
         >
           <section className={`imgIconMenu`}>

@@ -1,69 +1,12 @@
 import income from "../../public/img/homePage/income.png";
 import expense from "../../public/img/homePage/expense.png";
 const Chart = ({ styles, Image, data }) => {
-  const days = data.listIncome;
-  const bullet1 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[0].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet2 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[1].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet3 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[2].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet4 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[3].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet5 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[4].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet6 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[5].total / 3000000) * 100
-      : "1"
-  }%`;
-  const bullet7 = `${
-    Array.isArray(days) && days[0].total > 0
-      ? (days[6].total / 3000000) * 100
-      : "1"
-  }%`;
+  const incomeData = data.listIncome;
+  const ExpenseData = data.listExpense;
+
+  console.log(ExpenseData);
   return (
     <>
-      <style jsx>
-        {`
-          .bullet1-chart {
-            height: ${bullet1};
-          }
-          .bullet2-chart {
-            height: ${bullet2};
-          }
-          .bullet3-chart {
-            height: ${bullet3};
-          }
-          .bullet4-chart {
-            height: ${bullet4};
-          }
-          .bullet5-chart {
-            height: ${bullet5};
-          }
-          .bullet6-chart {
-            height: ${bullet6};
-          }
-          .bullet7-chart {
-            height: ${bullet7};
-          }
-        `}
-      </style>
       <div className={styles.headChart}>
         <section className={styles.headInfo}>
           <section className={styles.imgBoxChart}>
@@ -96,59 +39,44 @@ const Chart = ({ styles, Image, data }) => {
       </div>
       <div className={styles.mainChart}>
         <section className={styles.chartView}>
-          <section
+          {/* <section
             className={`${styles.bulletChart} d-flex justify-content-center align-items-end `}
           >
             <section
               className={`${styles.bulletViewBlue} bullet1-chart`}
             ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewBlue} bullet2-chart`}
-            ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewSilver} bullet3-chart`}
-            ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewSilver} bullet4-chart`}
-            ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewSilver} bullet5-chart`}
-            ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewBlue} bullet6-chart`}
-            ></section>
-          </section>
-          <section
-            className={`${styles.bulletChart} d-flex justify-content-center align-items-end`}
-          >
-            <section
-              className={`${styles.bulletViewSilver} bullet7-chart`}
-            ></section>
-          </section>
+          </section> */}
+          {Array.isArray(incomeData) && Array.isArray(ExpenseData)
+            ? incomeData.map((item, index) => (
+                <>
+                  {console.log(index)}
+                  <style jsx>
+                    {`
+                      .bullet${index}-chart {
+                        height: ${(item.total / 3000000) * 100};
+                      }
+                      .Expense${index}-chart {
+                        height: ${(ExpenseData[index].total / 3000000) * 100};
+                      }
+                    `}
+                  </style>
+                  <section
+                    className={`${styles.bulletChart} d-flex justify-content-center align-items-end `}
+                  >
+                    <section
+                      className={`${styles.bulletViewBlue} bullet${index}-chart`}
+                    ></section>
+                    <section
+                      className={`${styles.bulletViewSilver} Expense${index}-chart`}
+                    ></section>
+                  </section>
+                </>
+              ))
+            : ""}
         </section>
         <section className={styles.textView}>
-          {Array.isArray(days)
-            ? days.map((item) => (
+          {Array.isArray(incomeData)
+            ? incomeData.map((item) => (
                 <>
                   {" "}
                   <section className={styles.daysView}>
