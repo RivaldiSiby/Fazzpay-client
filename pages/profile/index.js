@@ -3,6 +3,11 @@ import search from "../../public/img/transfer/search.png";
 import loadingSearch from "../../public/img/loading.gif";
 import iconUser from "../../public/img/layout/iconuser.jpg";
 import iconLeft from "../../public/img/profilePage/left.png";
+import lockicon from "../../public/img/authPage/vector/lock.png";
+import lockerr from "../../public/img/authPage/vector/lockerr.png";
+import unshowicon from "../../public/img/authPage/vector/unshow.png";
+import showicon from "../../public/img/authPage/vector/show.jpg";
+import lockiconActive from "../../public/img/authPage/vector/lockactive.png";
 // img
 
 import Image from "next/image";
@@ -21,6 +26,8 @@ import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
 import Search from "../../modules/user/Search";
 import Head from "next/head";
+
+import Personal from "../../components/profile/personal";
 const Profile = () => {
   const router = useRouter();
   const pin = useSelector((state) => state.pin);
@@ -33,6 +40,9 @@ const Profile = () => {
   const [modaluser2, setModaluser2] = useState(false);
   const [profilepage, setProfilepage] = useState(true);
   const [boxpage, setBoxpage] = useState("main");
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState(false);
   const Loader = (path) => {
     return `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1653276449${path}`;
   };
@@ -139,7 +149,7 @@ const Profile = () => {
                     <h4>+62 813-9387-7946</h4>
                     <section
                       onClick={() => setBoxpage("personal")}
-                      className={`${styles.boxListProfile} d-flex align-items-center`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
                     >
                       <p>Personal Information</p>
                       <Image
@@ -152,7 +162,7 @@ const Profile = () => {
                     </section>
                     <section
                       onClick={() => setBoxpage("password")}
-                      className={`${styles.boxListProfile} d-flex align-items-center`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
                     >
                       <p>Change Password</p>
                       <Image
@@ -165,7 +175,7 @@ const Profile = () => {
                     </section>
                     <section
                       onClick={() => setBoxpage("pin")}
-                      className={`${styles.boxListProfile} d-flex align-items-center`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
                     >
                       <p>Change PIN</p>
                       <Image
@@ -177,7 +187,7 @@ const Profile = () => {
                       />
                     </section>
                     <section
-                      className={`${styles.boxListProfile} d-flex align-items-center`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
                     >
                       <p>Logout</p>
                     </section>
@@ -187,26 +197,223 @@ const Profile = () => {
                 )}
                 {boxpage === "personal" ? (
                   <>
-                    <section className={`${styles.boxWrap} bg-light`}>
-                      <h5>Personal Information</h5>
-                      <p className={styles.textProfile}>
-                        We got your personal information from the sign up
-                        proccess. If you want to make changes on your
-                        information, contact our support.
-                      </p>
-                    </section>
+                    <Personal styles={styles} />
                   </>
                 ) : (
                   ""
                 )}
                 {boxpage === "password" ? (
                   <>
-                    <section className={`${styles.boxWrap} bg-light`}>
+                    <section className={`${styles.boxWrap}`}>
                       <h5>Change Password</h5>
                       <p className={styles.textProfile}>
                         You must enter your current password and then type your
                         new password twice.
                       </p>
+                      <section className={`${styles.boxPassword} mx-auto`}>
+                        <div
+                          className={`input-group mb-3 ${styles.boxformPass}`}
+                        >
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            {error !== false ? (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={lockerr}
+                                  alt="password-icon"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={
+                                    password.length > 0
+                                      ? lockiconActive
+                                      : lockicon
+                                  }
+                                  alt="password-icon"
+                                />
+                              </>
+                            )}
+                          </span>
+                          <input
+                            type={showPass === false ? "password" : "text"}
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } form-control`}
+                            placeholder="Current password"
+                            aria-label="Current password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            <Image
+                              className={`${styles.iconForm} oncursor`}
+                              src={showPass === false ? unshowicon : showicon}
+                              alt="unshow-icon"
+                              onClick={() =>
+                                showPass === false
+                                  ? setShowPass(true)
+                                  : setShowPass(false)
+                              }
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className={`input-group mb-3 ${styles.boxformPass}`}
+                        >
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            {error !== false ? (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={lockerr}
+                                  alt="password-icon"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={
+                                    password.length > 0
+                                      ? lockiconActive
+                                      : lockicon
+                                  }
+                                  alt="password-icon"
+                                />
+                              </>
+                            )}
+                          </span>
+                          <input
+                            type={showPass === false ? "password" : "text"}
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } form-control`}
+                            placeholder="New password"
+                            aria-label="New password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            <Image
+                              className={`${styles.iconForm} oncursor`}
+                              src={showPass === false ? unshowicon : showicon}
+                              alt="unshow-icon"
+                              onClick={() =>
+                                showPass === false
+                                  ? setShowPass(true)
+                                  : setShowPass(false)
+                              }
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className={`input-group mb-3 ${styles.boxformPass}`}
+                        >
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            {error !== false ? (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={lockerr}
+                                  alt="password-icon"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <Image
+                                  className={styles.iconForm}
+                                  src={
+                                    password.length > 0
+                                      ? lockiconActive
+                                      : lockicon
+                                  }
+                                  alt="password-icon"
+                                />
+                              </>
+                            )}
+                          </span>
+                          <input
+                            type={showPass === false ? "password" : "text"}
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } form-control`}
+                            placeholder="Repeat new password"
+                            aria-label="Repeat new password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <span
+                            className={`${styles.inputStyle} ${
+                              password.length > 0 ? styles.inputStyleActive : ""
+                            } ${
+                              error !== false ? styles.inputStyleError : ""
+                            } input-group-text`}
+                          >
+                            <Image
+                              className={`${styles.iconForm} oncursor`}
+                              src={showPass === false ? unshowicon : showicon}
+                              alt="unshow-icon"
+                              onClick={() =>
+                                showPass === false
+                                  ? setShowPass(true)
+                                  : setShowPass(false)
+                              }
+                            />
+                          </span>
+                        </div>
+                        {password.length > 0 ? (
+                          <button
+                            className={`${styles.btnForm} w-100 ${styles.btnActive}`}
+                          >
+                            Change Password
+                          </button>
+                        ) : (
+                          <button
+                            className={`${styles.btnForm} w-100 ${styles.btnDisable}`}
+                          >
+                            Change Password
+                          </button>
+                        )}
+                      </section>
                     </section>
                   </>
                 ) : (
