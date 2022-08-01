@@ -197,7 +197,13 @@ const Profile = () => {
                 )}
                 {boxpage === "personal" ? (
                   <>
-                    <Personal styles={styles} />
+                    <Personal
+                      dispatch={dispatch}
+                      auth={auth}
+                      loading={setLoading}
+                      user={user}
+                      styles={styles}
+                    />
                   </>
                 ) : (
                   ""

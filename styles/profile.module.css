@@ -127,6 +127,14 @@
   line-height: 30px;
   color: #514f5b;
 }
+.boxFoot > h5 {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  color: #514f5b;
+}
 
 .boxFoot {
   width: 70%;
