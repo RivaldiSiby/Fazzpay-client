@@ -2,7 +2,6 @@ const initialState = {
   isLogin: false,
   havePin: false,
   token: null,
-  user: [],
 };
 
 const auth = (prevState = initialState, action) => {
@@ -13,7 +12,6 @@ const auth = (prevState = initialState, action) => {
         isLogin: true,
         havePin: action.pin,
         token: action.token,
-        user: action.payload,
       };
     case "FAIL_LOGIN":
       return { isLogin: false, havePin: false, token: null, user: [] };

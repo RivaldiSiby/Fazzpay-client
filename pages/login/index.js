@@ -20,6 +20,7 @@ import { notifSuccess } from "../../helper/notif";
 import Getuser from "../../modules/user/Getuser";
 import { useSelector, useDispatch } from "react-redux";
 import { successLogin } from "../../redux/actionCreator/auth";
+import { addUser } from "../../redux/actionCreator/user";
 import { useRouter } from "next/router";
 import cekLogin from "../../helper/cekLogin";
 import Head from "next/head";
@@ -57,11 +58,11 @@ const Login = () => {
         if (user.status === 200) {
           dispatch(
             successLogin(
-              user.data.data,
               result.data.data.pin === null ? false : true,
               result.data.data.token
             )
           );
+          dispatch(addUser(user.data.data));
           notifSuccess("Success Login");
           setLoading(false);
           result.data.data.pin === null

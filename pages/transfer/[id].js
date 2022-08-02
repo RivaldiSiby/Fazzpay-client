@@ -155,7 +155,7 @@ const Transfer = () => {
           ) : (
             ""
           )}
-          <Navbar user={auth.user} />
+          <Navbar user={user} />
           <main className={styles.userHome}>
             <section className="container h-100 d-flex align-items-center">
               <section className={`${styles.menuBar} mt-5`}>
@@ -193,7 +193,7 @@ const Transfer = () => {
                     </section>
                     <section className={styles.detailTransfer}>
                       <p>Balance Left</p>
-                      <h4>Rp {auth.user.balance - parseInt(amount)}</h4>
+                      <h4>Rp {user.balance - parseInt(amount)}</h4>
                     </section>
                     <section className={styles.detailTransfer}>
                       <p>Date & Time</p>
@@ -232,7 +232,11 @@ const Transfer = () => {
 
                           <section className={styles.historyUserInfo}>
                             <h5>{user.firstName + " " + user.lastName}</h5>
-                            <p>{user.noTelp === null ? "+62" : user.noTelp}</p>
+                            <p>
+                              {user.noTelp === null
+                                ? "+62"
+                                : user.noTelp.slice(1)}
+                            </p>
                           </section>
                         </section>
                       </section>
@@ -277,7 +281,11 @@ const Transfer = () => {
 
                           <section className={styles.historyUserInfo}>
                             <h5>{user.firstName + " " + user.lastName}</h5>
-                            <p>{user.noTelp === null ? "+62" : user.noTelp}</p>
+                            <p>
+                              {user.noTelp === null
+                                ? "+62"
+                                : user.noTelp.slice(1)}
+                            </p>
                           </section>
                         </section>
                       </section>
@@ -298,7 +306,7 @@ const Transfer = () => {
                             onChange={(e) => setAmount(e.target.value)}
                           />
                         </div>
-                        <h4>Rp {auth.user.balance} Available</h4>
+                        <h4>Rp {user.balance} Available</h4>
                         <section
                           className={`d-flex mx-auto align-items-center ${styles.boxArea}`}
                         >
@@ -330,7 +338,7 @@ const Transfer = () => {
                         </section>
                         <section className={styles.detailTransfer}>
                           <p>Balance Left</p>
-                          <h4>Rp {auth.user.balance - parseInt(amount)}</h4>
+                          <h4>Rp {user.balance - parseInt(amount)}</h4>
                         </section>
                         <section className={styles.detailTransfer}>
                           <p>Date & Time</p>

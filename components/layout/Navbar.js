@@ -23,7 +23,7 @@ const Navbar = ({ user }) => {
             </section>
             <section className="col-7 info-user-navbar d-flex justify-content-center flex-column">
               <h5>{user.firstName + " " + user.lastName}</h5>
-              <p>+62 8139 3877 7946</p>
+              <p>+62 {user.noTelp.slice(1)}</p>
             </section>
             <section className="col-2 d-flex justify-content-center align-items-center">
               <Image

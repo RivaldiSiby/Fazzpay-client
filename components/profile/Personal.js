@@ -2,6 +2,7 @@ import { useState } from "react";
 import errorLogin from "../../helper/errorLogin";
 import Updateprofile from "../../modules/profile/Updateprofile";
 import Getuser from "../../modules/user/Getuser";
+import { addUser } from "../../redux/actionCreator/user";
 
 const Personal = ({ styles, user, loading, auth, dispatch }) => {
   const [managePhone, setManagePhone] = useState(false);
@@ -28,7 +29,7 @@ const Personal = ({ styles, user, loading, auth, dispatch }) => {
       };
       await Updateprofile(user.id, auth.token, data);
       const result = await Getuser(user.id, auth.token);
-      dispatch(result.data.data);
+      dispatch(addUser(result.data.data));
       loading(false);
     } catch (error) {
       if (error.response.data.status !== undefined) {
@@ -69,7 +70,11 @@ const Personal = ({ styles, user, loading, auth, dispatch }) => {
               >
                 <section className={styles.boxFoot}>
                   <h4 className={styles.textProfile}>First Name</h4>
-                  <input type="text" value={first} />
+                  <input
+                    onChange={(e) => setFirst(e.target.value)}
+                    type="text"
+                    value={first}
+                  />
                 </section>
                 <button
                   onClick={() => {
@@ -104,7 +109,11 @@ const Personal = ({ styles, user, loading, auth, dispatch }) => {
               >
                 <section className={styles.boxFoot}>
                   <h4 className={styles.textProfile}>Last Name</h4>
-                  <input type="text" value={last} />
+                  <input
+                    onChange={(e) => setLast(e.target.value)}
+                    type="text"
+                    value={last}
+                  />
                 </section>
                 <button
                   onClick={() => {
@@ -144,7 +153,8 @@ const Personal = ({ styles, user, loading, auth, dispatch }) => {
                 <section className={styles.boxFoot}>
                   <h4 className={styles.textProfile}>Phone Number</h4>
                   <input
-                    type="text"
+                    onChange={(e) => setPhone(e.target.value)}
+                    type="number"
                     value={phone}
                     placeholder="input your phone number here"
                   />

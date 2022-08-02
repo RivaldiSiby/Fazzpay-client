@@ -25,10 +25,12 @@ import Getuser from "../../modules/user/Getuser";
 import { successLogin } from "../../redux/actionCreator/auth";
 import Head from "next/head";
 import Gethistory from "../../modules/history/Gethistory";
+import { addUser } from "../../redux/actionCreator/user";
 
 const Home = () => {
   const router = useRouter();
   const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(false);
@@ -40,17 +42,17 @@ const Home = () => {
     cekLogin(auth.isLogin, dispatch, router);
     const getData = async () => {
       try {
-        const result = await Getdata(auth.user.id, auth.token);
-        const user = await Getuser(auth.user.id, auth.token);
+        const result = await Getdata(user.id, auth.token);
+        const userData = await Getuser(user.id, auth.token);
         const history = await Gethistory(auth.token, 4);
         if (
           result.status === 200 &&
-          user.status === 200 &&
+          userData.status === 200 &&
           history.status === 200
         ) {
           setData(result.data.data);
           setDatahistory(history.data.data);
-          dispatch(successLogin(user.data.data, true, auth.token));
+          dispatch(addUser(userData.data.data));
           setLoading(false);
         }
       } catch (error) {
@@ -117,7 +119,7 @@ const Home = () => {
           ) : (
             ""
           )}
-          <Navbar user={auth.user} />
+          <Navbar user={user} />
           <main className={styles.userHome}>
             <section className="container h-100 d-flex align-items-center">
               <section className={`${styles.menuBar}`}>
@@ -139,8 +141,8 @@ const Home = () => {
                 <section className={`${styles.balanceBox} d-flex `}>
                   <section className={styles.infoDana}>
                     <h5>Balance</h5>
-                    <h2>Rp {auth.user.balance}</h2>
-                    <p>+62 813-9387-7946</p>
+                    <h2>Rp {user.balance}</h2>
+                    <p>+62 {user.noTelp.slice(1)}</p>
                   </section>
                   <section className={`${styles.actionDana} d-flex`}>
                     <button

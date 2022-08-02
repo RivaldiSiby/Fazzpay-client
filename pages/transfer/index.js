@@ -115,7 +115,7 @@ const Transfer = () => {
           ) : (
             ""
           )}
-          <Navbar user={auth.user} />
+          <Navbar user={user} />
           <main className={styles.userHome}>
             <section className="container h-100 d-flex align-items-center">
               <section className={`${styles.menuBar} mt-5`}>
@@ -200,7 +200,7 @@ const Transfer = () => {
                                     <p>
                                       {user.noTelp === null
                                         ? "+62"
-                                        : user.noTelp}
+                                        : user.noTelp.slice(1)}
                                     </p>
                                   </section>
                                 </section>

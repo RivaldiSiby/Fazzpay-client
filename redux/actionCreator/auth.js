@@ -1,7 +1,6 @@
-export const successLogin = (auth, havePin, token) => {
+export const successLogin = (havePin, token) => {
   return {
     type: "SUCCESS_LOGIN",
-    payload: { ...auth },
     pin: havePin,
     token: token,
   };
