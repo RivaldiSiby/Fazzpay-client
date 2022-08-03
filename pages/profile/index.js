@@ -1,6 +1,4 @@
 // img
-import search from "../../public/img/transfer/search.png";
-import loadingSearch from "../../public/img/loading.gif";
 import iconUser from "../../public/img/layout/iconuser.jpg";
 import iconLeft from "../../public/img/profilePage/left.png";
 import iconEdit from "../../public/img/profilePage/edit.png";
@@ -21,10 +19,9 @@ import errorLogin from "../../helper/errorLogin";
 import Modaluser from "../../components/layout/Modaluser";
 import Topup from "../../modules/topup/Topup";
 import { notifSuccess } from "../../helper/notif";
-import Search from "../../modules/user/Search";
 import Head from "next/head";
 
-import Personal from "../../components/profile/personal";
+import Personal from "../../components/profile/Personal";
 import Password from "../../components/profile/Password";
 import Pin from "../../components/profile/Pin";
 import Updateimg from "../../modules/profile/Updateimg";
