@@ -27,6 +27,7 @@ const Transfer = () => {
   const router = useRouter();
   const pin = useSelector((state) => state.pin);
   const auth = useSelector((state) => state.auth);
+  const userData = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [load, setLoad] = useState(false);
@@ -35,6 +36,7 @@ const Transfer = () => {
   const [modaluser2, setModaluser2] = useState(false);
   const [searchvalue, setSearchvalue] = useState("");
   const [user, setUser] = useState(false);
+  const [mydata, setMydata] = useState(false);
   const [note, setNote] = useState("");
   const [amount, setAmount] = useState("");
   const [success, setSuccess] = useState(false);
@@ -56,6 +58,7 @@ const Transfer = () => {
   ];
   useEffect(() => {
     setLoading(true);
+    setMydata(userData);
     cekLogin(auth.isLogin, dispatch, router);
     if (pin.checkedPin === false) {
       router.push("/home");
@@ -126,7 +129,7 @@ const Transfer = () => {
       <Head>
         <title>Transfer</title>
       </Head>
-      {loading === false ? (
+      {loading === false && user !== false && mydata !== false ? (
         <>
           {modaluser1 === true ? (
             <>
@@ -155,7 +158,7 @@ const Transfer = () => {
           ) : (
             ""
           )}
-          <Navbar user={user} />
+          <Navbar user={mydata} />
           <main className={styles.userHome}>
             <section className="container h-100 d-flex align-items-center">
               <section className={`${styles.menuBar} mt-5`}>
