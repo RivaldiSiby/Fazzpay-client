@@ -3,8 +3,6 @@ import expense from "../../public/img/homePage/expense.png";
 const Chart = ({ styles, Image, data }) => {
   const incomeData = data.listIncome;
   const ExpenseData = data.listExpense;
-
-  console.log(ExpenseData);
   return (
     <>
       <div className={styles.headChart}>
@@ -49,7 +47,6 @@ const Chart = ({ styles, Image, data }) => {
           {Array.isArray(incomeData) && Array.isArray(ExpenseData)
             ? incomeData.map((item, index) => (
                 <>
-                  {console.log(index)}
                   <style jsx>
                     {`
                       .bullet${index}-chart {

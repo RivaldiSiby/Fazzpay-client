@@ -32,9 +32,10 @@ const Profile = () => {
   const router = useRouter();
   const pin = useSelector((state) => state.pin);
   const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user.user);
+  const userData = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(false);
   const [load, setLoad] = useState(false);
   const [modaluser1, setModaluser1] = useState(false);
   const [modaluser2, setModaluser2] = useState(false);
@@ -50,6 +51,7 @@ const Profile = () => {
     setBoxpage("main");
     setLoading(true);
     cekLogin(auth.isLogin, dispatch, router);
+    setUser(userData);
     setLoading(false);
   }, []);
 
@@ -100,7 +102,7 @@ const Profile = () => {
       <Head>
         <title>Profile</title>
       </Head>
-      {loading === false ? (
+      {loading === false && user !== false ? (
         <>
           {modaluser1 === true ? (
             <>
