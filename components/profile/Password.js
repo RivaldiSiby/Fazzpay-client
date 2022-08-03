@@ -13,8 +13,10 @@ import { addUser } from "../../redux/actionCreator/user";
 import Image from "next/image";
 import Updatepassword from "../../modules/profile/Updatepassword";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { notifSuccess } from "../../helper/notif";
 
-const Password = ({ styles, user, loading, auth, dispatch }) => {
+const Password = ({ styles, boxpage, user, loading, auth, dispatch }) => {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [Newpassword, setNewPassword] = useState("");
@@ -23,24 +25,31 @@ const Password = ({ styles, user, loading, auth, dispatch }) => {
   const [showPass2, setShowPass2] = useState(false);
   const [showPass3, setShowPass3] = useState(false);
   const [error, setError] = useState(false);
+  const [Msg, setMsg] = useState("");
+  const [Load, setLoad] = useState(false);
 
   const updatePassHandler = async () => {
     try {
-      loading(true);
+      setLoad(true);
       const data = {
         oldPassword: password,
         newPassword: Newpassword,
         confirmPassword: ConfirmPassword,
       };
-      await Updatepassword(user.id, auth.token);
-      dispatch(addUser(result.data.data));
+      await Updatepassword(user.id, auth.token, data);
+      loading(true);
+      await notifSuccess("Password has been change");
+      setLoad(false);
+      boxpage("main");
       loading(false);
     } catch (error) {
-      setError(error.response.data.msg);
+      console.log(error);
+      setLoad(false);
+      setError(true);
+      setMsg(error.response.data.msg);
       if (error.response.data.status !== undefined) {
         errorLogin(error.response.data.status, dispatch, router);
       }
-      loading(false);
     }
   };
   return (
@@ -211,16 +220,17 @@ const Password = ({ styles, user, loading, auth, dispatch }) => {
               />
             </span>
           </div>
-          {error !== false ? (
+          {Msg !== "" ? (
             <>
-              <h5 className={`${styles.errMsg} text-center w-100`}>{error}</h5>
+              <h5 className={`${styles.errMsg} text-center w-100`}>{Msg}</h5>
             </>
           ) : (
             ""
           )}
           {password.length > 0 &&
           Newpassword.length > 0 &&
-          ConfirmPassword.length > 0 ? (
+          ConfirmPassword.length > 0 &&
+          Load === false ? (
             <button
               onClick={() => updatePassHandler()}
               className={`${styles.btnForm} w-100 ${styles.btnActive}`}
@@ -228,11 +238,8 @@ const Password = ({ styles, user, loading, auth, dispatch }) => {
               Change Password
             </button>
           ) : (
-            <button
-              onClick={() => updatePassHanlder()}
-              className={`${styles.btnForm} w-100 ${styles.btnDisable}`}
-            >
-              Change Password
+            <button className={`${styles.btnForm} w-100 ${styles.btnDisable}`}>
+              {Load === true ? "Loading" : "Change Password"}
             </button>
           )}
         </section>

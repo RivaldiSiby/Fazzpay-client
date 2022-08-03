@@ -3,6 +3,9 @@ import iconNotif from "../../public/img/layout/notif.png";
 
 import Image from "next/image";
 const Navbar = ({ user }) => {
+  const Loader = (path) => {
+    return `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1653276449/${path}`;
+  };
   return (
     <div>
       <section className="navbar-user ">
@@ -14,7 +17,7 @@ const Navbar = ({ user }) => {
             <section className="col-3 d-flex justify-content-center align-items-center">
               <Image
                 className="img-navbar-user"
-                src={iconUser}
+                src={user.image === undefined ? iconUser : Loader(user.image)}
                 alt="user-icon"
                 layout="intrinsic"
                 width={75}

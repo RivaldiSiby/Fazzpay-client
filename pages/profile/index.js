@@ -3,12 +3,13 @@ import search from "../../public/img/transfer/search.png";
 import loadingSearch from "../../public/img/loading.gif";
 import iconUser from "../../public/img/layout/iconuser.jpg";
 import iconLeft from "../../public/img/profilePage/left.png";
+import iconEdit from "../../public/img/profilePage/edit.png";
 
 // img
 
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
@@ -25,7 +26,12 @@ import Head from "next/head";
 
 import Personal from "../../components/profile/personal";
 import Password from "../../components/profile/Password";
+import Pin from "../../components/profile/Pin";
+import Updateimg from "../../modules/profile/Updateimg";
+import { addUser } from "../../redux/actionCreator/user";
+import Getuser from "../../modules/user/Getuser";
 const Profile = () => {
+  const inputFile = useRef();
   const router = useRouter();
   const pin = useSelector((state) => state.pin);
   const auth = useSelector((state) => state.auth);
@@ -37,9 +43,11 @@ const Profile = () => {
   const [modaluser2, setModaluser2] = useState(false);
   const [profilepage, setProfilepage] = useState(true);
   const [boxpage, setBoxpage] = useState("main");
+  const [img, setImg] = useState(false);
+  const [PreviewImg, setPreviewImg] = useState(false);
 
   const Loader = (path) => {
-    return `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1653276449${path}`;
+    return `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1653276449/${path}`;
   };
   useEffect(() => {
     setBoxpage("main");
@@ -62,6 +70,30 @@ const Profile = () => {
       if (error.response.data.status !== undefined) {
         errorLogin(error.response.data.status, dispatch, router);
       }
+
+      setLoading(false);
+    }
+  };
+  const handleInputFile = (e) => {
+    const file = e.target.files[0];
+    const toPreview = URL.createObjectURL(e.target.files[0]);
+    setPreviewImg(toPreview);
+    setImg(file);
+    updateImg(file);
+  };
+  const updateImg = async (file) => {
+    try {
+      setLoading(true);
+      const form = new FormData();
+      form.append("image", file);
+      await Updateimg(user.id, auth.token, form);
+      const result = await Getuser(user.id, auth.token);
+      dispatch(addUser(result.data.data));
+      setLoading(false);
+    } catch (error) {
+      // if (error.response.data.status !== undefined) {
+      //   errorLogin(error.response.data.status, dispatch, router);
+      // }
 
       setLoading(false);
     }
@@ -126,24 +158,49 @@ const Profile = () => {
                   Image={Image}
                 />
               </section>
-              <section
-                className={`${styles.mainBox} mt-5 d-flex flex-column align-items-center `}
-              >
+              <section className={`${styles.mainBox} mt-5 d-flex flex-column `}>
                 {boxpage === "main" ? (
                   <>
-                    <section className={`${styles.imgBoxUser}`}>
+                    <section className={`${styles.imgBoxUser} mx-auto`}>
                       <Image
-                        className="img-navbar-user"
-                        src={user.img === undefined ? iconUser : user.img}
+                        className="img-navbar-user mx-auto"
+                        src={
+                          user.image === undefined && img === false
+                            ? iconUser
+                            : img !== false
+                            ? PreviewImg
+                            : Loader(user.image)
+                        }
+                        width={80}
+                        height={80}
                         alt="user-icon"
                         layout="responsive"
                       />
                     </section>
+                    <section
+                      onClick={() => inputFile.current.click()}
+                      className={`${styles.editImg} d-flex mx-auto oncursor`}
+                    >
+                      <Image
+                        src={iconEdit}
+                        width={11}
+                        height={11}
+                        alt="user-icon"
+                      />
+                      <p>Edit</p>
+                    </section>
+                    <input
+                      className={"d-none"}
+                      type="file"
+                      hidden
+                      ref={inputFile}
+                      onChange={handleInputFile}
+                    />
                     <h3>{user.firstName + " " + user.lastName}</h3>
                     <h4>+62 {user.noTelp.slice(1)}</h4>
                     <section
                       onClick={() => setBoxpage("personal")}
-                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor mx-auto`}
                     >
                       <p>Personal Information</p>
                       <Image
@@ -156,7 +213,7 @@ const Profile = () => {
                     </section>
                     <section
                       onClick={() => setBoxpage("password")}
-                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor mx-auto`}
                     >
                       <p>Change Password</p>
                       <Image
@@ -169,7 +226,7 @@ const Profile = () => {
                     </section>
                     <section
                       onClick={() => setBoxpage("pin")}
-                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor mx-auto`}
                     >
                       <p>Change PIN</p>
                       <Image
@@ -181,7 +238,7 @@ const Profile = () => {
                       />
                     </section>
                     <section
-                      className={`${styles.boxListProfile} d-flex align-items-center oncursor`}
+                      className={`${styles.boxListProfile} d-flex align-items-center oncursor mx-auto`}
                     >
                       <p>Logout</p>
                     </section>
@@ -197,6 +254,7 @@ const Profile = () => {
                       loading={setLoading}
                       user={user}
                       styles={styles}
+                      boxpage={setBoxpage}
                     />
                   </>
                 ) : (
@@ -210,6 +268,7 @@ const Profile = () => {
                       loading={setLoading}
                       user={user}
                       styles={styles}
+                      boxpage={setBoxpage}
                     />
                   </>
                 ) : (
@@ -217,13 +276,14 @@ const Profile = () => {
                 )}
                 {boxpage === "pin" ? (
                   <>
-                    <section className={`${styles.boxWrap} bg-light`}>
-                      <h5>Change PIN</h5>
-                      <p className={styles.textProfile}>
-                        Enter your current 6 digits Zwallet PIN below to
-                        continue to the next steps.
-                      </p>
-                    </section>
+                    <Pin
+                      dispatch={dispatch}
+                      auth={auth}
+                      loading={setLoading}
+                      user={user}
+                      styles={styles}
+                      boxpage={setBoxpage}
+                    />
                   </>
                 ) : (
                   ""
