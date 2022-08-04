@@ -57,7 +57,7 @@ const Pin = () => {
         return;
       }
       const data = `${input1}${input2}${input3}${input4}${input5}${input6}`;
-      console.log(data);
+
       await CreatePin(data, auth);
       setPincreated(true);
       dispatch(successLogin(auth.user, true, auth.token));

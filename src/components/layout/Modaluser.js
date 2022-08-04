@@ -12,6 +12,7 @@ const Modaluser = ({
   modal,
   Image,
   setModal,
+  transferHandler,
 }) => {
   const router = useRouter();
   const [input1, setInput1] = useState("");
@@ -31,7 +32,8 @@ const Modaluser = ({
       const pin = `${input1}${input2}${input3}${input4}${input5}${input6}`;
       await Checkpin(pin, token);
       dispatch(checkedPin());
-      router.push("/transfer");
+      await transferHandler();
+      setModal(false);
       setLoading(false);
     } catch (error) {
       setLoading(false);

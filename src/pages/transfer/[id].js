@@ -22,6 +22,7 @@ import Getuser from "../../modules/user/Getuser";
 import Swal from "sweetalert2";
 import TransferDana from "../../modules/transfer/Transfer";
 import Head from "next/head";
+import { addUser } from "../../redux/actionCreator/user";
 
 const Transfer = () => {
   const router = useRouter();
@@ -60,9 +61,6 @@ const Transfer = () => {
     setLoading(true);
     setMydata(userData);
     cekLogin(auth.isLogin, dispatch, router);
-    if (pin.checkedPin === false) {
-      router.push("/home");
-    }
     const getUser = async () => {
       try {
         const userData = await Getuser(router.query.id, auth.token);
@@ -93,10 +91,12 @@ const Transfer = () => {
         notes: note,
       };
       const result = await TransferDana(data, auth.token);
-      if (result.status === 200) {
-        setSuccess(result.data.data);
-        setLoading(false);
-      }
+
+      setSuccess(true);
+      let newData = { ...mydata };
+      newData.balance = result.data.data.balance;
+      dispatch(addUser(newData));
+      setLoading(false);
     } catch (error) {
       if (error.response.data.status !== undefined) {
         errorLogin(error.response.data.status, dispatch, router);
@@ -134,8 +134,10 @@ const Transfer = () => {
           {modaluser1 === true ? (
             <>
               <Modaluser
+                setLoading={setLoading}
                 dispatch={dispatch}
                 token={auth.token}
+                transferHandler={transferHandler}
                 modal="transfer"
                 setModal={setModaluser1}
                 Image={Image}
@@ -196,7 +198,7 @@ const Transfer = () => {
                     </section>
                     <section className={styles.detailTransfer}>
                       <p>Balance Left</p>
-                      <h4>Rp {user.balance - parseInt(amount)}</h4>
+                      <h4>Rp {mydata.balance - parseInt(amount)}</h4>
                     </section>
                     <section className={styles.detailTransfer}>
                       <p>Date & Time</p>
@@ -349,7 +351,7 @@ const Transfer = () => {
                         </section>
                         <section className={styles.detailTransfer}>
                           <p>Balance Left</p>
-                          <h4>Rp {user.balance - parseInt(amount)}</h4>
+                          <h4>Rp {mydata.balance - parseInt(amount)}</h4>
                         </section>
                         <section className={styles.detailTransfer}>
                           <p>Date & Time</p>
@@ -386,7 +388,9 @@ const Transfer = () => {
                         </>
                       ) : (
                         <>
-                          <button onClick={transferHandler}>Continue</button>
+                          <button onClick={() => setModaluser1(true)}>
+                            Continue
+                          </button>
                         </>
                       )}
                     </section>

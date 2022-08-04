@@ -52,7 +52,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
     try {
       setLoad(true);
       const pin = `${input1}${input2}${input3}${input4}${input5}${input6}`;
-      console.log(pin);
+
       await Updatepin(pin, auth.token, user.id);
       setPinCheck(true);
       setInput1("");

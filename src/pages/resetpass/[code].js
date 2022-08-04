@@ -45,7 +45,6 @@ const Resetpass = () => {
         confirmPassword: cpassword,
       };
       const result = await ResetPass(data);
-      console.log(result.status);
       if (result.status === 200) {
         notifSuccess("Password has been changed successfully");
         setLoading(false);

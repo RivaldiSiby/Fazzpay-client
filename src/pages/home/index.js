@@ -146,7 +146,7 @@ const Home = () => {
                   </section>
                   <section className={`${styles.actionDana} d-flex`}>
                     <button
-                      onClick={() => setModaluser1(true)}
+                      onClick={() => router.push("/transfer")}
                       className="d-flex align-items-center justify-content-center"
                     >
                       <Image src={arrowUp} alt="" />

@@ -40,9 +40,6 @@ const Transfer = () => {
     setLoading(true);
     setUser(userData);
     cekLogin(auth.isLogin, dispatch, router);
-    if (pin.checkedPin === false) {
-      router.push("/home");
-    }
     setLoading(false);
   }, []);
   const searchHandler = async () => {
@@ -163,7 +160,6 @@ const Transfer = () => {
                     {Array.isArray(datasearch) ? (
                       <>
                         {" "}
-                        {console.log(datasearch)}
                         <section className="w-100">
                           {datasearch.map((user) => (
                             <>

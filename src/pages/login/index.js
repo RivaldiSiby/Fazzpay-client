@@ -51,10 +51,9 @@ const Login = () => {
         password: password,
       };
       const result = await LoginUser(data);
-      console.log(result.status);
       if (result.status === 200) {
         const user = await Getuser(result.data.data.id, result.data.data.token);
-        console.log(user.data);
+
         if (user.status === 200) {
           dispatch(
             successLogin(
