@@ -1,4 +1,9 @@
 /*leftAuth */
+.authPage {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
 .authleft {
   min-height: 950px;
   background: #6a7ff5;
@@ -11,14 +16,14 @@
   background: #6a7ff5;
 }
 .wave1 {
-  width: 49%;
+  width: 48%;
   position: absolute;
   bottom: 395px;
   left: 0;
   z-index: 5;
 }
 .wave2 {
-  width: 49%;
+  width: 48%;
   position: absolute;
   bottom: 375px;
   left: 0;
@@ -289,11 +294,11 @@
 /* responsive tablet */
 @media only screen and (max-width: 990px) {
   .wave1 {
-    width: 100%;
+    width: 98%;
     bottom: 325px;
   }
   .wave2 {
-    width: 100%;
+    width: 98%;
     bottom: 305px;
   }
   .mainHead {

@@ -80,6 +80,7 @@ const Login = () => {
     <div>
       <Head>
         <title>Login</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
       {loading === false ? (
         <>

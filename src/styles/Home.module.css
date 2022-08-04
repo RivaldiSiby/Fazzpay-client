@@ -24,8 +24,8 @@
   position: absolute;
   z-index: 11;
   min-height: 900px;
-  width: 80%;
-  margin: 0 10%;
+  width: 100%;
+  padding: 0 10%;
   top: 0;
 }
 .titleHead {
@@ -484,7 +484,7 @@
     min-height: 1110px;
   }
   .imgBox {
-    height: 550px;
+    height: 645px;
   }
   .btnSignUp {
     font-size: 16px;
@@ -514,9 +514,17 @@
 }
 @media only screen and (max-width: 500px) {
   .header {
-    height: 1433px;
+    height: 1233px;
   }
   .downhead {
-    min-height: 1133px;
+    min-height: 933px;
+  }
+  .imgBox {
+    height: 435px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .imgBox {
+    height: 405px;
   }
 }

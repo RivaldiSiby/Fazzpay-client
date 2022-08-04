@@ -29,7 +29,7 @@ const Leftauth = ({ style, Image }) => {
           </svg>
         </section>
         <section className={style.mainHead}>
-          <section className="row">
+          <section>
             <section className="col-12 d-flex ">
               <h5 className={style.titleHead}>FazzPay</h5>
             </section>
@@ -38,6 +38,7 @@ const Leftauth = ({ style, Image }) => {
                 src={phoneGroup}
                 alt="Picture of the author"
                 className={style.imgHeader}
+                layout={"fixed"}
               />
             </section>
             <section className={style.infoAuth}>
