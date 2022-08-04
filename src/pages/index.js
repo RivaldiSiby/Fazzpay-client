@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import cekLogin from "../helper/cekLogin";
 import { useSelector } from "react-redux";
 import Head from "next/head";
+import LoadingPage from "./Loading";
 
 export default function Index() {
   const auth = useSelector((state) => state.auth);
