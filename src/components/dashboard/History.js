@@ -1,11 +1,15 @@
+import { useRouter } from "next/router";
 import iconUser from "../../../public/img/layout/iconuser.jpg";
 
 const History = ({ styles, Image, data }) => {
+  const router = useRouter();
   return (
     <>
       <section className={styles.historyInfo}>
         <h4>Transaction History</h4>
-        <p>See all</p>
+        <p className="oncursor" onClick={() => router.push("/history")}>
+          See all
+        </p>
       </section>
       <section>
         {Array.isArray(data) ? (
