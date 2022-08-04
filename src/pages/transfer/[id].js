@@ -23,7 +23,7 @@ import Swal from "sweetalert2";
 import TransferDana from "../../modules/transfer/Transfer";
 import Head from "next/head";
 import { addUser } from "../../redux/actionCreator/user";
-import Export from "../../modules/transfer/export";
+import Export from "../../modules/transfer/Export";
 
 const Transfer = () => {
   const router = useRouter();
