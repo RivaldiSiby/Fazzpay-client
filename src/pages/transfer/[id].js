@@ -23,6 +23,7 @@ import Swal from "sweetalert2";
 import TransferDana from "../../modules/transfer/Transfer";
 import Head from "next/head";
 import { addUser } from "../../redux/actionCreator/user";
+import Export from "../../modules/transfer/export";
 
 const Transfer = () => {
   const router = useRouter();
@@ -43,6 +44,7 @@ const Transfer = () => {
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
   const [progress, setProgress] = useState(false);
+  const [Transaction, setTransaction] = useState(false);
   const month = [
     "Jan",
     "Feb",
@@ -91,12 +93,26 @@ const Transfer = () => {
         notes: note,
       };
       const result = await TransferDana(data, auth.token);
-
+      console.log(result);
       setSuccess(true);
       let newData = { ...mydata };
       newData.balance = result.data.data.balance;
+      setTransaction(result.data.data.id);
       dispatch(addUser(newData));
       setLoading(false);
+    } catch (error) {
+      if (error.response.data.status !== undefined) {
+        errorLogin(error.response.data.status, dispatch, router);
+      }
+      setFail(true);
+      setLoading(false);
+    }
+  };
+  const exportHandler = async () => {
+    try {
+      const result = await Export(Transaction, auth.token);
+      console.log(result);
+      window.open(result.data.data.url);
     } catch (error) {
       if (error.response.data.status !== undefined) {
         errorLogin(error.response.data.status, dispatch, router);
@@ -247,6 +263,12 @@ const Transfer = () => {
                       </section>
                     </section>
                     <section className="d-flex justify-content-end w-100">
+                      <section
+                        onClick={() => exportHandler()}
+                        className={`${styles.btnDownload} d-flex justify-content-center align-items-center`}
+                      >
+                        Download PDF
+                      </section>
                       <button onClick={() => router.push("/home")}>
                         Back to Home
                       </button>

@@ -33,6 +33,7 @@ $ git clone https://github.com/RivaldiSiby/Fazzpay-client
 ```
 
 2. Install NPM packages
+   .,
 
 ```sh
 $ npm install

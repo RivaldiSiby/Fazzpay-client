@@ -22,22 +22,24 @@ const Modaluser = ({
   const [input5, setInput5] = useState("");
   const [input6, setInput6] = useState("");
   const [amount, setAmount] = useState("");
+  const [err, setErr] = useState(false);
 
   const closeHandler = () => {
     setModal(false);
   };
   const pinHandler = async () => {
     try {
-      setLoading(true);
       const pin = `${input1}${input2}${input3}${input4}${input5}${input6}`;
       await Checkpin(pin, token);
       dispatch(checkedPin());
+      setLoading(true);
       await transferHandler();
       setModal(false);
       setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);
+      setErr(error.response.data.msg);
     }
   };
   return (
@@ -98,7 +100,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input1}
                       maxLength="1"
                       onChange={(e) => setInput1(e.target.value)}
@@ -110,7 +112,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input2}
                       maxLength="1"
                       onChange={(e) => setInput2(e.target.value)}
@@ -122,7 +124,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input3}
                       maxLength="1"
                       onChange={(e) => setInput3(e.target.value)}
@@ -134,7 +136,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input4}
                       maxLength="1"
                       onChange={(e) => setInput4(e.target.value)}
@@ -146,7 +148,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input5}
                       maxLength="1"
                       onChange={(e) => setInput5(e.target.value)}
@@ -158,7 +160,7 @@ const Modaluser = ({
                     }`}
                   >
                     <input
-                      type="text"
+                      type="password"
                       value={input6}
                       maxLength="1"
                       onChange={(e) => setInput6(e.target.value)}
@@ -166,6 +168,15 @@ const Modaluser = ({
                   </section>
                 </section>
               </section>
+              {err !== false ? (
+                <>
+                  <h5 className={`${styles.errMsg} text-center w-100`}>
+                    {err}
+                  </h5>
+                </>
+              ) : (
+                ""
+              )}
               <section className="d-flex justify-content-end">
                 <button
                   onClick={pinHandler}

@@ -97,7 +97,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input1}
                     maxLength="1"
                     onChange={(e) => setInput1(e.target.value)}
@@ -109,7 +109,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input2}
                     maxLength="1"
                     onChange={(e) => setInput2(e.target.value)}
@@ -121,7 +121,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input3}
                     maxLength="1"
                     onChange={(e) => setInput3(e.target.value)}
@@ -133,7 +133,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input4}
                     maxLength="1"
                     onChange={(e) => setInput4(e.target.value)}
@@ -145,7 +145,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input5}
                     maxLength="1"
                     onChange={(e) => setInput5(e.target.value)}
@@ -157,7 +157,7 @@ const Pin = ({ styles, boxpage, user, loading, auth, dispatch }) => {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     value={input6}
                     maxLength="1"
                     onChange={(e) => setInput6(e.target.value)}

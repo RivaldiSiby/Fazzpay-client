@@ -5,6 +5,9 @@ const errorLogin = (status, dispatch, router) => {
     dispatch(failLogin());
     router.push("/login");
   }
+  if (status === 404) {
+    router.replace("/home");
+  }
   return;
 };
 
