@@ -45,12 +45,11 @@ const History = () => {
     cekLogin(auth.isLogin, dispatch, router);
   }, []);
   useEffect(() => {
-    console.log(Filter);
     const getData = async () => {
       try {
         let page = Page;
         const history = await Gethistory(auth.token, 6, page, Filter);
-        console.log(history);
+
         if (history.status === 200) {
           setData(history.data.data);
           setPage(history.data.pagination.page);

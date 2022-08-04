@@ -34,6 +34,7 @@ export default function Index() {
     <div>
       <Head>
         <title>Landing Page</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
       <Header style={styles} Image={Image} Link={Link} />
       <main className={"w-100 bg-dark"}>

@@ -93,7 +93,7 @@ const Transfer = () => {
         notes: note,
       };
       const result = await TransferDana(data, auth.token);
-      console.log(result);
+
       setSuccess(true);
       let newData = { ...mydata };
       newData.balance = result.data.data.balance;
@@ -111,7 +111,7 @@ const Transfer = () => {
   const exportHandler = async () => {
     try {
       const result = await Export(Transaction, auth.token);
-      console.log(result);
+
       window.open(result.data.data.url);
     } catch (error) {
       if (error.response.data.status !== undefined) {
