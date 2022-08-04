@@ -36,7 +36,7 @@ export default function Index() {
         <title>Landing Page</title>
       </Head>
       <Header style={styles} Image={Image} Link={Link} />
-      <main>
+      <main className={"w-100 bg-dark"}>
         <section className={styles.partners}>
           <Image src={partner1} alt="logo1" className={styles.imgLogo} />
           <Image src={partner2} alt="logo2" className={styles.imgLogo} />
